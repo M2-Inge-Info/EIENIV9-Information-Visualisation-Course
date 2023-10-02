@@ -1,0 +1,219 @@
+rdf tuple : <subject, predicate, object>
+
+
+
+Différent PREFIX utilisé :
+PREFIX dbo:     <http://dbpedia.org/ontology/> 
+PREFIX dcterms: <http://purl.org/dc/terms/> 
+PREFIX foaf:    <http://xmlns.com/foaf/0.1/> 
+PREFIX mo:      <http://purl.org/ontology/mo/> 
+PREFIX owl:     <http://www.w3.org/2002/07/owl#> 
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX schema:  <http://schema.org/> 
+PREFIX wsb:     <http://ns.inria.fr/wasabi/ontology/> 
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#> 
+
+
+
+=======================================================================================================================================
+=======================================================================================================================================
+=======================================================================================================================================
+
+
+
+Pour récupérer tout les prédicat des artistes :
+PREFIX mo:      <http://purl.org/ontology/mo/> 
+
+SELECT DISTINCT ?predicate
+WHERE {
+    {
+        ?artist a mo:SoloMusicArtist;
+            ?predicate ?object.
+    }
+    UNION
+    {
+        ?artist a mo:MusicGroup;
+            ?predicate ?object.
+    }
+    UNION
+    {
+        ?artist a mo:MusicArtist;
+            ?predicate ?object.
+    }
+}
+
+predicate
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+http://www.w3.org/2000/01/rdf-schema#label
+http://www.w3.org/2002/07/owl#sameAs
+http://xmlns.com/foaf/0.1/name
+http://dbpedia.org/ontology/genre
+http://dbpedia.org/ontology/associatedMusicalArtist
+http://purl.org/dc/terms/subject
+http://purl.org/dc/terms/abstract
+http://dbpedia.org/ontology/abstract
+http://schema.org/alternateName
+http://schema.org/disambiguatingDescription
+http://purl.org/ontology/mo/discogs
+http://purl.org/ontology/mo/homepage
+http://purl.org/ontology/mo/musicbrainz
+http://purl.org/ontology/mo/musicbrainz_guid
+http://purl.org/ontology/mo/uuid
+http://purl.org/ontology/mo/wikipedia
+http://purl.org/ontology/mo/myspace
+http://ns.inria.fr/wasabi/ontology/allMusic_page
+http://ns.inria.fr/wasabi/ontology/amazon_page
+http://ns.inria.fr/wasabi/ontology/deezer_artist_id
+http://ns.inria.fr/wasabi/ontology/deezer_fans
+http://ns.inria.fr/wasabi/ontology/deezer_page
+http://ns.inria.fr/wasabi/ontology/discogs_id
+http://ns.inria.fr/wasabi/ontology/facebook_page
+http://ns.inria.fr/wasabi/ontology/iTunes_page
+http://ns.inria.fr/wasabi/ontology/name_without_accent
+http://ns.inria.fr/wasabi/ontology/pureVolume_page
+http://ns.inria.fr/wasabi/ontology/record_label
+http://ns.inria.fr/wasabi/ontology/soundCloud_page
+http://ns.inria.fr/wasabi/ontology/spotify_page
+http://ns.inria.fr/wasabi/ontology/twitter_page
+http://ns.inria.fr/wasabi/ontology/wikia_page
+http://ns.inria.fr/wasabi/ontology/youTube_page
+http://schema.org/genre
+http://schema.org/foundingDate
+http://ns.inria.fr/wasabi/ontology/location
+http://ns.inria.fr/wasabi/ontology/wikidata_page
+http://xmlns.com/foaf/0.1/gender
+http://ns.inria.fr/wasabi/ontology/lastFm_page
+http://schema.org/dissolutionDate
+http://ns.inria.fr/wasabi/ontology/rateYourMusic_page
+http://ns.inria.fr/wasabi/ontology/instagram_page
+http://ns.inria.fr/wasabi/ontology/BBC_page
+http://ns.inria.fr/wasabi/ontology/googlePlus_page
+
+
+
+=======================================================================================================================================
+=======================================================================================================================================
+=======================================================================================================================================
+
+
+
+Pour récupérer tout les prédicat des albums :
+PREFIX wsb:     <http://ns.inria.fr/wasabi/ontology/>
+
+SELECT DISTINCT ?predicate
+WHERE {
+    ?album a wsb:Album;
+        ?predicate ?object.
+}
+
+predicate
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+http://www.w3.org/2002/07/owl#sameAs
+http://purl.org/dc/terms/title
+http://purl.org/dc/terms/language
+http://schema.org/datePublished
+http://schema.org/location
+http://purl.org/ontology/mo/discogs
+http://purl.org/ontology/mo/genre
+http://purl.org/ontology/mo/homepage
+http://purl.org/ontology/mo/musicbrainz
+http://purl.org/ontology/mo/musicbrainz_guid
+http://purl.org/ontology/mo/performer
+http://purl.org/ontology/mo/upc
+http://purl.org/ontology/mo/uuid
+http://purl.org/ontology/mo/wikipedia
+http://schema.org/barcode
+http://schema.org/releaseDate
+http://ns.inria.fr/wasabi/ontology/album_length
+http://ns.inria.fr/wasabi/ontology/allMusic_page
+http://ns.inria.fr/wasabi/ontology/amazon_page
+http://ns.inria.fr/wasabi/ontology/deezer_album_id
+http://ns.inria.fr/wasabi/ontology/deezer_fans
+http://ns.inria.fr/wasabi/ontology/deezer_page
+http://ns.inria.fr/wasabi/ontology/discogs_id
+http://ns.inria.fr/wasabi/ontology/has_explicit_lyrics
+http://ns.inria.fr/wasabi/ontology/iTunes_page
+http://ns.inria.fr/wasabi/ontology/spotify_page
+http://schema.org/disambiguatingDescription
+
+
+
+=======================================================================================================================================
+=======================================================================================================================================
+=======================================================================================================================================
+
+
+
+Pour récupérer tout les prédicat des chansons :
+PREFIX wsb:     <http://ns.inria.fr/wasabi/ontology/>
+
+SELECT DISTINCT ?predicate
+WHERE {
+    ?song a wsb:Song;
+    ?predicate ?object.
+}
+
+predicate
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+http://purl.org/dc/terms/title
+http://purl.org/dc/terms/language
+http://schema.org/datePublished
+http://purl.org/ontology/mo/homepage
+http://purl.org/ontology/mo/musicbrainz
+http://purl.org/ontology/mo/musicbrainz_guid
+http://purl.org/ontology/mo/performer
+http://purl.org/ontology/mo/uuid
+http://ns.inria.fr/wasabi/ontology/emotion_tags
+http://ns.inria.fr/wasabi/ontology/social_tags
+http://purl.org/ontology/mo/bpm
+http://purl.org/ontology/mo/duration
+http://purl.org/ontology/mo/isrc
+http://purl.org/ontology/mo/track_number
+http://schema.org/album
+http://schema.org/duration
+http://ns.inria.fr/wasabi/ontology/allMusic_page
+http://ns.inria.fr/wasabi/ontology/amazon_page
+http://ns.inria.fr/wasabi/ontology/deezer_artist_id
+http://ns.inria.fr/wasabi/ontology/deezer_page
+http://ns.inria.fr/wasabi/ontology/deezer_song_id
+http://ns.inria.fr/wasabi/ontology/explicit_lyrics_count
+http://ns.inria.fr/wasabi/ontology/gain
+http://ns.inria.fr/wasabi/ontology/has_explicit_lyrics
+http://ns.inria.fr/wasabi/ontology/iTunes_page
+http://ns.inria.fr/wasabi/ontology/language_detected
+http://ns.inria.fr/wasabi/ontology/rank
+http://ns.inria.fr/wasabi/ontology/spotify_page
+http://ns.inria.fr/wasabi/ontology/title_without_accent
+http://purl.org/ontology/af/confidence
+http://purl.org/ontology/chord/chord
+http://ns.inria.fr/wasabi/ontology/topic_probability
+http://ns.inria.fr/wasabi/ontology/arousal
+http://ns.inria.fr/wasabi/ontology/has_emotion_tags
+http://ns.inria.fr/wasabi/ontology/has_social_tags
+http://ns.inria.fr/wasabi/ontology/lastFm_song_id
+http://ns.inria.fr/wasabi/ontology/valence
+http://www.w3.org/2002/07/owl#sameAs
+http://purl.org/dc/terms/subject
+http://purl.org/dc/terms/abstract
+http://purl.org/ontology/mo/wikipedia
+http://schema.org/releaseDate
+http://schema.org/award
+http://ns.inria.fr/wasabi/ontology/goEar_page
+http://ns.inria.fr/wasabi/ontology/multitrack_file
+http://ns.inria.fr/wasabi/ontology/multitrack_path
+http://ns.inria.fr/wasabi/ontology/record_label
+http://ns.inria.fr/wasabi/ontology/recording_description
+http://purl.org/dc/terms/format
+http://purl.org/ontology/mo/producer
+http://ns.inria.fr/wasabi/ontology/youTube_page
+http://schema.org/disambiguatingDescription
+http://ns.inria.fr/wasabi/ontology/song_summary
+http://schema.org/author
+http://schema.org/endTime
+http://schema.org/startTime
+http://ns.inria.fr/wasabi/ontology/hypeMachine_page
+http://ns.inria.fr/wasabi/ontology/pandora_page
+http://ns.inria.fr/wasabi/ontology/lastFm_page
+http://xmlns.com/foaf/0.1/topic
+http://ns.inria.fr/wasabi/ontology/song_notes
