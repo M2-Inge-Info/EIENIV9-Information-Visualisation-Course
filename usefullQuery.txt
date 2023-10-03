@@ -2,7 +2,14 @@ rdf tuple : <subject, predicate, object>
 
 
 
-Différent PREFIX utilisé :
+En utilisant l'API on est bloqué à 200 résultats par requête
+En utilisant l'endpoint on est bloqué à 30000 résultats par requête
+On va donc utilisé l'endpoint et des requête SPARQL pour récupérer tout les résultats qu'on veut
+http://wasabi.inria.fr/sparql
+
+
+
+Différent PREFIX utilisé (utile pour les requêtes SPARQL):
 PREFIX dbo:     <http://dbpedia.org/ontology/> 
 PREFIX dcterms: <http://purl.org/dc/terms/> 
 PREFIX foaf:    <http://xmlns.com/foaf/0.1/> 
@@ -13,6 +20,18 @@ PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema:  <http://schema.org/> 
 PREFIX wsb:     <http://ns.inria.fr/wasabi/ontology/> 
 PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#> 
+
+
+
+Merge de requête :
+Si l'on utilise LIMIT 100 on récupère les 100 premiers résultats de la requête
+En ajoutant OFFSET 100 on peut récupérer les 100 premiers résultats en partant du 100ème résultat
+Ainsi si l'on utilise la même requête et que l'on change juste l'OFFSET comme ci-dessous, on peut récupérer tout les résultats qu'on veut :
+LIMIT 100
+LIMIT 100 OFFSET 100
+LIMIT 100 OFFSET 200
+LIMIT 100 OFFSET 300
+etc...
 
 
 
@@ -29,7 +48,9 @@ WHERE {
 }
 ORDER BY ?predicate
 
-predicate
+
+
+Predicate lié au artistes :
 http://dbpedia.org/ontology/abstract
 http://dbpedia.org/ontology/associatedMusicalArtist
 http://dbpedia.org/ontology/genre
@@ -88,6 +109,24 @@ http://xmlns.com/foaf/0.1/gender
 http://xmlns.com/foaf/0.1/name
 
 
+
+Requête pour récupérer les artistes avec leur nom, leur date de naissance, leur date de mort (optionnel), leur genre, leur ville et leur pays :
+SELECT ?subject ?name ?birth ?death (GROUP_CONCAT(?genre; separator=", ") as ?genres) ?city ?country from <http://ns.inria.fr/wasabi/graph/artists>
+WHERE {
+    ?subject <http://schema.org/birthDate> ?birth ;
+             <http://schema.org/genre> ?genre ;
+             <http://xmlns.com/foaf/0.1/name> ?name ;
+             <http://ns.inria.fr/wasabi/ontology/location> ?location .
+    
+    ?location <http://ns.inria.fr/wasabi/ontology/city> ?city ;
+              <http://ns.inria.fr/wasabi/ontology/country> ?country .
+             
+             
+    OPTIONAL {?subject <http://schema.org/deathDate> ?death .}
+}
+ORDER BY ?name
+
+
 =======================================================================================================================================
 =======================================================================================================================================
 =======================================================================================================================================
@@ -101,7 +140,9 @@ WHERE {
 }
 ORDER BY ?predicate
 
-predicate
+
+
+Predicate lié au albums :
 http://ns.inria.fr/wasabi/ontology/album_length
 http://ns.inria.fr/wasabi/ontology/allMusic_page
 http://ns.inria.fr/wasabi/ontology/amazon_page
@@ -146,7 +187,9 @@ WHERE {
 }
 ORDER BY ?predicate
 
-predicate
+
+
+Predicate lié au chansons :
 http://ns.inria.fr/wasabi/ontology/allMusic_page
 http://ns.inria.fr/wasabi/ontology/amazon_page
 http://ns.inria.fr/wasabi/ontology/deezer_artist_id
@@ -212,7 +255,9 @@ WHERE {
 }
 ORDER BY ?predicate
 
-predicate
+
+
+Predicate lié au chansons extended :
 http://ns.inria.fr/wasabi/ontology/arousal
 http://ns.inria.fr/wasabi/ontology/emotion_tags
 http://ns.inria.fr/wasabi/ontology/has_emotion_tags
