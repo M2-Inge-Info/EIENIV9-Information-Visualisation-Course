@@ -35,9 +35,13 @@ etc...
 
 
 
+
+
 =======================================================================================================================================
 =======================================================================================================================================
 =======================================================================================================================================
+
+
 
 
 
@@ -110,26 +114,13 @@ http://xmlns.com/foaf/0.1/name
 
 
 
-Requête pour récupérer les artistes avec leur nom, leur date de naissance, leur date de mort (optionnel), leur genre, leur ville et leur pays :
-SELECT ?subject ?name ?birth ?death (GROUP_CONCAT(?genre; separator=", ") as ?genres) ?city ?country from <http://ns.inria.fr/wasabi/graph/artists>
-WHERE {
-    ?subject <http://schema.org/birthDate> ?birth ;
-             <http://schema.org/genre> ?genre ;
-             <http://xmlns.com/foaf/0.1/name> ?name ;
-             <http://ns.inria.fr/wasabi/ontology/location> ?location .
-    
-    ?location <http://ns.inria.fr/wasabi/ontology/city> ?city ;
-              <http://ns.inria.fr/wasabi/ontology/country> ?country .
-             
-             
-    OPTIONAL {?subject <http://schema.org/deathDate> ?death .}
-}
-ORDER BY ?name
 
 
 =======================================================================================================================================
 =======================================================================================================================================
 =======================================================================================================================================
+
+
 
 
 
@@ -174,9 +165,13 @@ http://www.w3.org/2002/07/owl#sameAs
 
 
 
+
+
 =======================================================================================================================================
 =======================================================================================================================================
 =======================================================================================================================================
+
+
 
 
 
@@ -274,3 +269,63 @@ http://ns.inria.fr/wasabi/ontology/valence
 http://purl.org/ontology/mo/uuid
 http://www.w3.org/1999/02/22-rdf-syntax-ns#type
 http://www.w3.org/2000/01/rdf-schema#label
+
+
+
+
+
+=======================================================================================================================================
+=======================================================================================================================================
+=======================================================================================================================================
+
+
+
+
+
+Requête de Lucas :
+SELECT ?subject ?name ?birth ?death (GROUP_CONCAT(?genre; separator=", ") as ?genres) ?city ?country from <http://ns.inria.fr/wasabi/graph/artists>
+WHERE {
+    ?subject <http://schema.org/birthDate> ?birth ;
+             <http://schema.org/genre> ?genre ;
+             <http://xmlns.com/foaf/0.1/name> ?name ;
+             <http://ns.inria.fr/wasabi/ontology/location> ?location .
+    
+    ?location <http://ns.inria.fr/wasabi/ontology/city> ?city ;
+              <http://ns.inria.fr/wasabi/ontology/country> ?country .
+             
+             
+    OPTIONAL {?subject <http://schema.org/deathDate> ?death .}
+}
+ORDER BY ?name
+
+
+
+Requête de Quentin (début) :
+PREFIX wsb: <http://ns.inria.fr/wasabi/ontology/> 
+PREFIX mo: <http://purl.org/ontology/mo/> 
+PREFIX schema: <http://schema.org/> 
+
+SELECT ?subject ?title ?genre ?date ?performer ?name ?birth ?artistType (COUNT(?members) as ?nbMembers) from <http://ns.inria.fr/wasabi/graph/albums> from <http://ns.inria.fr/wasabi/graph/artists>
+WHERE {
+    ?subject <http://purl.org/ontology/mo/genre> ?genre ;
+             <http://purl.org/dc/terms/title> ?title ;
+             <http://schema.org/releaseDate> ?date ;
+             mo:performer ?performer .
+
+    {
+        ?performer a ?artistType ;
+                   schema:members ?members .
+
+        FILTER (?artistType = wsb:Artist_Group)
+    }
+    UNION
+    {
+        ?performer a ?artistType ;
+                   <http://xmlns.com/foaf/0.1/name> ?name ;
+                   <http://schema.org/birthDate> ?birth .
+
+        FILTER (?artistType = wsb:Artist_Person || ?artistType = wsb:Choir || ?artistType = wsb:Orchestra)
+    }
+}
+ORDER BY ?subject
+LIMIT 1000 OFFSET 5000
