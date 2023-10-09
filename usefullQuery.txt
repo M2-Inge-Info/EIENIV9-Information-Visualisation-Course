@@ -283,18 +283,22 @@ http://www.w3.org/2000/01/rdf-schema#label
 
 
 Requête de Lucas :
-SELECT ?subject ?name ?birth ?death (GROUP_CONCAT(?genre; separator="; ") as ?genres) ?city ?country from <http://ns.inria.fr/wasabi/graph/artists>
+PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
+PREFIX schema:  <http://schema.org/> 
+PREFIX wsb:     <http://ns.inria.fr/wasabi/ontology/> 
+
+SELECT ?subject ?name ?birth ?death (GROUP_CONCAT(?genre; separator=", ") as ?genres) ?city ?country from <http://ns.inria.fr/wasabi/graph/artists>
 WHERE {
-    ?subject <http://schema.org/birthDate> ?birth ;
-             <http://schema.org/genre> ?genre ;
-             <http://xmlns.com/foaf/0.1/name> ?name ;
-             <http://ns.inria.fr/wasabi/ontology/location> ?location .
+    ?subject schema:birthDate ?birth ;
+             schema:genre ?genre ;
+             foaf:name ?name ;
+             wsb:location ?location .
     
-    ?location <http://ns.inria.fr/wasabi/ontology/city> ?city ;
-              <http://ns.inria.fr/wasabi/ontology/country> ?country .
+    ?location wsb:city ?city ;
+              wsb:country ?country .
              
              
-    OPTIONAL {?subject <http://schema.org/deathDate> ?death .}
+    OPTIONAL {?subject schema:deathDate ?death .}
 }
 ORDER BY ?name
 
