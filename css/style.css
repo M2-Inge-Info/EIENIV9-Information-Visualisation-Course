@@ -1,0 +1,44 @@
+#map { width: 100%; height: 600px; }
+
+
+body {
+margin: 20px 50px;
+height: 100%;
+}
+
+div#loc{
+  border: black solid 1px;
+  margin-top: 50px;
+  border-radius: 15px;
+  /* Cache ce qu'il dépasse de la border */
+  overflow: hidden;
+}
+
+.header {
+border-radius: 15px;
+padding: 20px;
+text-align: center;
+background-color: rgb(75, 125, 190);
+/* color: blueviolet; */
+color: white;
+}
+
+
+h2 {
+  text-align: center;
+  padding: 25px;
+  margin-bottom: 25px;
+  background-color: lightblue;
+  border-radius: 15px;
+}
+
+.footer {
+background-color: lightgray;
+text-align: center;
+padding: 10px;
+height: 50px;
+margin-bottom: 10px;
+margin-top: 50px;
+border-radius: 15px;
+border: black solid 1px;
+}
