@@ -3,7 +3,7 @@ import json
 
 fileCities = "../csv/geonames-all-cities-with-a-population-1000.csv"
 fileJSON = "../src/data/lucas_data.json"
-fileJSON2 = "../src/data/lucas_data2.json"
+fileJSON2 = "../src/data/lucas_data_filtered.json"
 
 # Charger le fichier CSV dans un DataFrame
 df_csv = pd.read_csv(fileCities, sep=';')
@@ -13,7 +13,7 @@ with open(fileJSON, 'r', encoding='utf-8') as json_file:
     data_json = json.load(json_file)
 
 # Affiche la longueur de data_json
-print(len(data_json.get('results').get('bindings')))
+print("Villes récupérées:", len(data_json.get('results').get('bindings')))
 
 # Créer un ensemble des villes et pays à partir du DataFrame CSV pour une recherche plus efficace
 villes_csv_set = set(df_csv['Name'].str.lower())
@@ -51,9 +51,9 @@ for artiste in data_json.get('results').get('bindings'):
             countryMiss+=1
 
 # Affiche la longueur de data_json
-print(len(data_json.get('results').get('bindings')))
-print("Ville manquante", cityMiss)
-print("Pays manquant", countryMiss)
+print("Villes filtrées:", len(data_json.get('results').get('bindings')))
+print("Villes manquantes:", cityMiss)
+print("Pays manquants:", countryMiss)
 
 # Créé un nouveau fichier JSON avec les données filtrées
 with open(fileJSON2, 'w', encoding='utf-8') as json_file:
