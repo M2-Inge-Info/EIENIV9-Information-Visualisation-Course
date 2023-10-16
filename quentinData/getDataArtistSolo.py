@@ -11,23 +11,27 @@ output_file = "src\data\quentin_data_artist_solo.csv"
 with open(input_file, 'r', encoding='utf-8') as file:
     data = json.load(file)
 
-# Filtrer les données pour n'inclure que celles où "nbMembers" est égal à 0
-filtered_data = [item for item in data["results"]["bindings"] if "nbMembers" in item and int(item["nbMembers"]["value"]) <= 1]
+# Filtrer les données pour n'inclure que cellesles où les artistes ne font pas parti d'un groupe "nbMembers" est égal à 0
+filtered_solo_data = [item for item in data["results"]["bindings"] if "nbMembers" in item and (int(item["nbMembers"]["value"]) == 0 )]
 
-# Extraire les informations nécessaires pour le CSV
-data_for_csv = []
-for item in filtered_data:
-    artist_name = item["names"]["value"]
-    birthday = item["births"]["value"]
+# Créer une liste de lignes pour le CSV
+csv_lines = []
+
+for item in filtered_solo_data:
+    artist_names = item["nameSolo"]["value"].split("; ")
+    birthdays = item["births"]["value"].split("; ")
     title = item["title"]["value"]
     genre = item["genre"]["value"]
     release_date = item["date"]["value"]
-    data_for_csv.append([artist_name, birthday, title, genre, release_date])
+    nb_members = "No"
+
+    for artist_name, birthday in zip(artist_names, birthdays):
+        csv_lines.append([artist_name, birthday, title, genre, release_date, nb_members])
 
 # Écrire les données dans un fichier CSV
 with open(output_file, 'w', newline='', encoding='utf-8') as csv_file:
     csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(["Nom de l'artiste", "Date d'anniversaire", "Titre", "Genre", "Date de sortie"])
-    csv_writer.writerows(data_for_csv)
+    csv_writer.writerow(["Nom de l'artiste", "Date d'anniversaire", "Titre Album", "Genre", "Date de sortie", "Groupe"])
+    csv_writer.writerows(csv_lines)
 
 print(f"Les données ont été filtrées et enregistrées dans {output_file}")
