@@ -1,0 +1,51 @@
+d3.js
+
+https://observablehq.com/@d3/pie-chart/2?intent=fork -- Use it first
+
+https://observablehq.com/@d3/radial-stacked-bar-chart/2?intent=fork
+
+
+https://observablehq.com/@d3/grouped-bar-chart/2?intent=fork
+
+
+https://observablehq.com/@d3/pie-chart/2?intent=fork
+https://observablehq.com/@d3/grouped-bar-chart/2?intent=fork
+
+
+
+++ https://observablehq.com/@d3/radial-stacked-bar-chart/2?intent=fork
+
+---- 
+
+All artists fields
+
+Instruments 
+
+
+Filtrer par rapport au genres (1)
+
+
+equipments
+
+
+Vizu globale (type de l'équipement)
+    Visualiser les équipements par rapport à leur type. 
+    Ensuite visualiser à l'aide de :: ?? 
+
+    Par rapport à leur type
+
+Click sur "une bulle" visualsier la description, img
+
+Pouvoir montré pour chaque type quel instrument est le plus utilisé
+
+Montré les images de chaque équipement et sa description et son nom ect..
+    img, name, url, urlDescription (a voir si on le met)
+
+
+Click : 
+    Pour chaque type affiché en mode bar les 10 équipements les plus utilisé par rapport a leur type
+
+Si click sur un équipement en particulier on affichera (img, name, description, type) dans un CARD ou je sais pas quoi
+
+---
+1.
