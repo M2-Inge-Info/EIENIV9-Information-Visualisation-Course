@@ -20,7 +20,7 @@ PREFIX wsb: <http://ns.inria.fr/wasabi/ontology/>
 PREFIX mo: <http://purl.org/ontology/mo/> 
 PREFIX schema: <http://schema.org/> 
 
-SELECT ?subject ?title ?genre ?date ?performer ?artistType (COUNT(?members) as ?nbMembers) (GROUP_CONCAT(?name; separator="; ") as ?names) (GROUP_CONCAT(?birth; separator="; ") as ?births) 
+SELECT ?subject ?title ?genre ?date ?performer ?artistType (COUNT(?members) as ?nbMembers) ?nameSolo (GROUP_CONCAT(?name; separator="; ") as ?names) (GROUP_CONCAT(?birth; separator="; ") as ?births) 
 from <http://ns.inria.fr/wasabi/graph/albums> from <http://ns.inria.fr/wasabi/graph/artists>
 WHERE {
     ?subject <http://purl.org/ontology/mo/genre> ?genre ;
@@ -30,6 +30,7 @@ WHERE {
 
     {
         ?performer a ?artistType ;
+                   <http://xmlns.com/foaf/0.1/name> ?nameSolo ;
                    schema:members ?members .
 
         ?members <http://xmlns.com/foaf/0.1/name> ?name ;
@@ -40,7 +41,7 @@ WHERE {
     UNION
     {
         ?performer a ?artistType ;
-                   <http://xmlns.com/foaf/0.1/name> ?name ;
+                   <http://xmlns.com/foaf/0.1/name> ?nameSolo ;
                    <http://schema.org/birthDate> ?birth .
 
         FILTER (?artistType = wsb:Artist_Person || ?artistType = wsb:Choir || ?artistType = wsb:Orchestra) 
@@ -48,7 +49,6 @@ WHERE {
 
 }
 ORDER BY ?subject
-LIMIT 1000 OFFSET 5000
 """
 
 
@@ -58,6 +58,7 @@ sparql.setReturnFormat(JSON)
 # Exécutez la requête SPARQL
 sparql.setQuery(query)
 results = sparql.query().convert()
+
 
 # Enregistrez le résultat au format JSON
 output_file = 'src\data\quentin_data.json'
