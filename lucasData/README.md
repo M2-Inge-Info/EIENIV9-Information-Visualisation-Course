@@ -47,3 +47,17 @@ Créer un fichier CSV "lucas_data_countries_latlong.csv" avec les données calcu
 
 
 Le script getLucasDataTTL.py n'est pas utiliser pour le moment.
+
+
+-------------------------------------------------------------------------
+Date de naissance des artistes optionnelles ? Undefined accepté ? 2k échantillons corrects (DoB obligatoire).
+Echelle logarithmique, ou extremum défini.
+Jouer sur les niveaux de zoom
+Colorier les pays en fonction du nombre d'artistes (circle).
+Click sur un pays zoom sur la ville avec le plus d'artiste dans la ville.
+
+Popup avec nom des artistes (plusieurs colonnes ci-besoin).
+Click sur le nom dans le popup envoie sur la page Wasabi de l'artiste.
+-------------------------------------------------------------------------
+
+
