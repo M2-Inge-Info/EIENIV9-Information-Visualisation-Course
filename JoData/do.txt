@@ -25,6 +25,9 @@ Visualisation :
     - Visualisé l'équipement utilisé par un artiste ? 
     - Visualiser les équipements par genre par rapport aux artistes et son équipement le plus connu ?
 
+    - Visualiser les artistes qui utilisent l'équipement sélectionne ?
+    - Visualiser l'artiste le plus connu utilisant cette équipement
+
 Filtres :
     - Filtrer par count ✅
     - Filtrer par popularité
