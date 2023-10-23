@@ -17,6 +17,25 @@ https://observablehq.com/@d3/grouped-bar-chart/2?intent=fork
 
 ---- 
 
+Visualisation : 
+    - Visualation des genres dés équipements ✅
+    - Visualiser l'équipement le plus populaire par genre
+    - Visualisation de chaque équipement par genre
+    - Visualisation détaille d'un équipement
+    - Visualisé l'équipement utilisé par un artiste ? 
+    - Visualiser les équipements par genre par rapport aux artistes et son équipement le plus connu ?
+
+Filtres :
+    - Filtrer par count ✅
+    - Filtrer par popularité
+    - Filtrer par recherche
+    - Filtrer par équipement
+
+Click : 
+    - Cliqué sur une partie d'un donut ✅
+    - Cliqué sur un équipement
+
+
 All artists fields
 
 Instruments 

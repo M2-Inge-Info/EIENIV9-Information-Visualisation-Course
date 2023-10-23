@@ -4,90 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualisation des genres</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
-<body>
-    <h1>Visualisation des genres</h1>
+<body style="font-family: 'Roboto', sans-serif; background-color: #f0f0f0; padding: 50px;">
+    <h1>Visualisation des genres d'équipement</h1>
+    <input type="range" min="10" max="100" value="10" class="slider" id="percentageSlider">
+    <span id="percentageValue">10%</span>
     <div id="chart"></div>
     <div id="legend"></div>
 
-    <script>
-        // Charger les données depuis le fichier genre_counts.json
-        d3.json("py_data/genre_counts.json").then(function(data) {
-            // Créer un tableau à partir des données
-            var dataArray = Object.entries(data);
+    <div id="equipement-details"></div>
 
-            // Configurer les dimensions du graphique Donut
-            var width = 800;
-            var height = 400;
-            var radius = Math.min(width, height) / 2;
-
-            var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-            var pie = d3.pie()
-                .value(function(d) { return d[1]; });
-
-            var arc = d3.arc()
-                .innerRadius(radius - 100)
-                .outerRadius(radius - 20);
-
-            var svg = d3.select("#chart")
-                .append("svg")
-                .attr("width", width)
-                .attr("height", height)
-                .append("g")
-                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-            var arcs = svg.selectAll("arc")
-                .data(pie(dataArray))
-                .enter()
-                .append("g")
-                .attr("class", "arc");
-
-            arcs.append("path")
-                .attr("d", arc)
-                .attr("fill", function(d) { return color(d.data[0]); })
-                .on("click", function(d) {
-                    console.log(d.data)
-                    // Vérifier si d est défini avant d'accéder à ses propriétés
-                    if (d && d.data) {
-                        // Gestion de l'interaction lorsqu'un segment du Donut est cliqué
-                        console.log("Cliqué sur le segment : ", d.data[0]);
-                    }
-                });
-
-            // Ajoutez des étiquettes à chaque segment (facultatif)
-            arcs.append("text")
-                .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-                .attr("dy", "0.35em")
-                .text(function(d) { return d.data[0]; });
-
-            // Légende
-            var legend = d3.select("#legend")
-                .append("svg")
-                .attr("width", 300)
-                .attr("height", height);
-
-            var legendItems = legend.selectAll(".legend-item")
-                .data(dataArray)
-                .enter()
-                .append("g")
-                .attr("class", "legend-item")
-                .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
-
-            legendItems.append("rect")
-                .attr("width", 10)
-                .attr("height", 10)
-                .attr("fill", function(d) { return color(d[0]); });
-
-            legendItems.append("text")
-                .attr("x", 20)
-                .attr("y", 10)
-                .text(function(d) { return d[0] + " - " + d[1]; });
-        })
-        .catch(function(error) {
-            console.error(error);
-        });
-    </script>
+    <script src="scripts/visualisation.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
