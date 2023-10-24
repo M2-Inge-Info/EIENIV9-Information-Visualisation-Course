@@ -1,97 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
 <head>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Bar Chart</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        .bar {
+            fill-opacity: 0.6;
+        }
+
+        .axis {
+            font-size: 14px;
+        }
+
+        .legend {
+            font-size: 12px;
+        }
+
+        /* Nouveau style pour la légende */
+        #legend-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+    </style>
 </head>
+
 <body>
 
-<script>
-// Déclaration de la variable contenant les données CSV
-const data = [];
+    <!-- Ajout d'un conteneur pour la légende -->
+    <div id="legend-container"></div>
 
-// Utilisation de D3.js pour charger le fichier CSV
-d3.csv('src\\data\\quentin_population_album.csv').then(csvData => {
-  // À ce stade, les données CSV sont stockées dans la variable "csvData".
+    <script>
 
-  // Parcourir les données et nettoyer la colonne "Nombre d'albums" si nécessaire
-  csvData.forEach(entry => {
-    if (entry["Nombre d'albums"]) {
-      entry["Nombre d'albums"] = entry["Nombre d'albums"].replace(/\D+$/, '');
-    }
-  });
+    // Marges et dimensions du SVG
+const margin = {top: 100, right: 30, bottom: 40, left: 200},
+    width = 1200 - margin.left - margin.right,
+    height = 5000 - margin.top - margin.bottom;
 
-  createStackedChart(csvData); // Appel de la fonction pour créer le graphique
+// Echelles
+const x = d3.scaleLinear().range([0, width]);
+const y = d3.scaleBand().range([height, 0]).padding(0.1);
+
+// Couleurs
+const colors = d3.scaleOrdinal()
+    .domain(['<1970', '1970-1980', '1980-1990', '1990-2000', '2000-2010', '2010-2020', '>2020'])
+    .range(['rgba(230, 57, 70, 0.8)', 'rgba(244, 162, 97, 0.8)', 'rgba(252, 191, 73, 0.8)', 'rgba(252, 236, 87, 0.8)', 'rgba(153, 217, 140, 0.8)', 'rgba(82, 182, 154, 0.8)', 'rgba(69, 123, 157, 0.8)']);
+
+// Création du SVG
+const svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// Chargement des données
+d3.csv("src/data/quentin_population_album.csv").then(function(data) {
+
+    // Aggregation des données
+    const dataSum = d3.nest()
+        .key(d => d.Genre)
+        .key(d => d.année)
+        .rollup(v => d3.sum(v, d => d["Nombre d'albums"]))
+        .entries(data);
+
+    const stackedData = dataSum.map(d => {
+        let obj = {Genre: d.key};
+        d.values.forEach(v => obj[v.key] = v.value);
+        return obj;
+    });
+
+    // Mise à jour des échelles
+    x.domain([0, d3.max(stackedData, d => d3.sum(colors.domain(), key => d[key] || 0))]);
+    y.domain(stackedData.map(d => d.Genre));
+
+    // Création des barres empilées
+    colors.domain().forEach((year, i) => {
+        svg.selectAll(".bar-" + year.replace(/[><]/g, ""))
+            .data(stackedData)
+            .enter()
+            .append("rect")
+            .attr("class", "bar-" + year.replace(/[><]/g, ""))
+            .attr("y", d => y(d.Genre))
+            .attr("x", d => x(d3.sum(colors.domain().slice(0, i), key => d[key] || 0)))
+            .attr("width", d => x(d[year] || 0))
+            .attr("height", y.bandwidth())
+            .attr("fill", colors(year));
+    });
+
+    // Ajout des axes
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(d3.axisLeft(y));
+
+    // Ajout de la légende
+
+
+
+const legendRectSize = 15; // Taille du carré de couleur
+const legendSpacing = 20;   // Espacement entre le carré de couleur et le texte
+
+const legendWidth = 380;
+const legendHeight = 60;
+
+const legendSvg = d3.select("#legend-container")
+            .append("svg")
+            .attr("width", legendWidth)
+            .attr("height", legendHeight);
+
+const legendItems = legendSvg.selectAll(".legendItem")
+    .data(colors.domain())
+    .enter()
+    .append("g")
+    .attr("class", "legendItem")
+    .attr("transform", (d, i) => `translate(${i * (legendWidth / colors.domain().length)}, 0)`);
+
+legendItems.append("rect")
+    .attr("x", 0)
+    .attr("y", 20)
+    .attr("width", legendWidth / colors.domain().length - 5) // a small gap between each rect
+    .attr("height", 15)
+    .attr("fill", d => colors(d));
+
+legendItems.append("text")
+    .attr("x", (legendWidth / colors.domain().length) / 2)
+    .attr("y", 48)
+    .attr("text-anchor", "middle")
+    .style("font-size", "0.65em")
+    .text(d => d);
+
+// Title for the legend
+legendSvg.append("text")
+    .attr("x", legendWidth / 2)
+    .attr("y", 13)
+    .attr("text-anchor", "middle")
+    .style("font-weight", "bold")
+    .style("font-size", "1.25em")
+    .style("fill", "black")
+    .text("Année de sortie de l'album");
 });
 
-// Fonction pour créer le graphique empilé
-function createStackedChart(data) {
-  // Dimensions du graphique
-  const width = 1200;
-  const height = 4200;
-  const marginTop = 30;
-  const marginRight = 10;
-  const marginBottom = 20;
-  const marginLeft = 120;
 
-  // Création de l'élément SVG
-  const svg = d3.select("body")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  // Supprimez ou modifiez cette partie si nécessaire
-  // Elle définit la plage de couleurs pour les séries
-  const color = d3.scaleOrdinal(d3.schemeCategory10);
-
-  // Créez une échelle pour l'axe X (correspondant au nombre d'albums)
-  const x = d3.scaleLinear()
-    .domain([0, d3.max(data, d => +d["Nombre d'albums"])])
-    .range([marginLeft, width - marginRight]);
-
-  // Créez une échelle pour l'axe Y (correspondant au genre)
-  const y = d3.scaleBand()
-    .domain(data.map(d => d.Genre))
-    .range([marginTop, height - marginBottom])
-    .padding(0.1);
-
-  // Créez un groupe pour les barres empilées
-  const g = svg.append("g");
-
-  // Utilisez D3 pour empiler les données par année
-  const stack = d3.stack()
-    .keys(["Nombre d'albums"])
-    .order(d3.stackOrderNone)
-    .offset(d3.stackOffsetNone);
-
-  const stackedData = stack(data);
-
-  // Créez les barres empilées
-  g.selectAll(".bar")
-    .data(stackedData)
-    .enter().append("g")
-    .attr("fill", d => color(d.key))
-    .selectAll("rect")
-    .data(d => d)
-    .enter().append("rect")
-    .attr("x", d => x(d[0]))
-    .attr("y", d => y(d.data.Genre))
-    .attr("width", d => x(d[1]) - x(d[0]))
-    .attr("height", y.bandwidth());
-
-  // Ajoutez un axe X en haut
-  svg.append("g")
-    .attr("class", "x-axis")
-    .attr("transform", "translate(0," + marginTop + ")")
-    .call(d3.axisTop(x));
-
-  // Ajoutez un axe Y à gauche
-  svg.append("g")
-    .attr("class", "y-axis")
-    .attr("transform", "translate(" + marginLeft + ",0)")
-    .call(d3.axisLeft(y));
-}
-
-</script>
-
+        
+    </script>
 </body>
+
 </html>
