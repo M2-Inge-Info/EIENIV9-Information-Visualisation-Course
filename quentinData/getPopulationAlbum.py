@@ -18,7 +18,7 @@ result_df['année'] = pd.Categorical(result_df['année'],
                                     ordered=True)
 
 # Filtrer les entrées où le Nombre d'albums est 0
-result_df = result_df[result_df['Nombre d\'albums'] > 10]
+result_df = result_df[result_df['Nombre d\'albums'] > 0]
 
 # Trier le DataFrame résultant en fonction de l'année
 result_df = result_df.sort_values(by='année')

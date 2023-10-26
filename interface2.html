@@ -48,8 +48,8 @@
         Trier par:
         <select id="sortOrder" onchange="updateChart()">
             <option value="alpha">Alphabétique (A-Z)</option>
-            <option value="desc">Nombre d'albums décroissant</option>
-            <option value="asc">Nombre d'albums croissant</option>
+            <option value="asc">Nombre d'albums croissant</option> 
+            <option value="desc">Nombre d'albums décroissant</option> 
         </select>
     </form>
 
@@ -72,8 +72,9 @@
             bottom: 40,
             left: 200
         },
-            width = 1200 - margin.left - margin.right,
-            height = 5000 - margin.top - margin.bottom;
+
+        width = 1200 - margin.left - margin.right,
+        height = 5000 - margin.top - margin.bottom;
 
         const x = d3.scaleLinear().range([0, width]);
         const y = d3.scaleBand().range([height, 0]).padding(0.1);
@@ -109,30 +110,37 @@
             updateChart();
         });
 
+
+
         function updateChart() {
-            svg.selectAll("*").remove();
+    svg.selectAll("*").remove();
 
-            let sortOrder = d3.select("#sortOrder").node().value;
-            let numRows = d3.select("#numRows").node().value;
+    let sortOrder = d3.select("#sortOrder").node().value;
+    let numRows = d3.select("#numRows").node().value;
 
-            let displayData = stackedData;
+    if (numRows === "all") {
+        numRows = stackedData.length;
+    } else {
+        numRows = parseInt(numRows);
+    }
 
-            if (numRows !== "all") {
-                numRows = parseInt(numRows);
-                if (sortOrder === "alpha") {
-                    displayData = displayData.slice(0, numRows);
-                } else {
-                    displayData = displayData.sort((a, b) => d3.sum(colors.domain(), key => (b[key] || 0) - (a[key] || 0))).slice(0, numRows);
-                }
-            }
+    // Tri selon l'ordre choisi
+    switch (sortOrder) {
+        case "alpha":
+            stackedData.sort((a, b) => d3.ascending(a.Genre, b.Genre));
+            break;
+        case "desc": // Cette partie sera pour le tri décroissant
+            stackedData.sort((a, b) => d3.descending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
+            break;
+        case "asc": // Cette partie sera pour le tri croissant
+            stackedData.sort((a, b) => d3.ascending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
+            break;
+    }
 
-            if (sortOrder === "alpha") {
-                y.domain(displayData.map(d => d.Genre).sort().reverse());
-            } else if (sortOrder === "desc") {
-                y.domain(displayData.sort((a, b) => d3.sum(colors.domain(), key => (b[key] || 0) - (a[key] || 0))).map(d => d.Genre));
-            } else {
-                y.domain(displayData.sort((a, b) => d3.sum(colors.domain(), key => (a[key] || 0) - (b[key] || 0))).map(d => d.Genre));
-            }
+    // Pour avoir les `n` premiers éléments en haut, nous filtrons après le tri
+    let displayData = stackedData.slice(0, numRows);
+
+            y.domain(displayData.map(d => d.Genre).reverse());
 
             x.domain([0, d3.max(displayData, d => d3.sum(colors.domain(), key => d[key] || 0))]);
 
@@ -157,7 +165,8 @@
             svg.append("g")
                 .attr("class", "y axis")
                 .call(d3.axisLeft(y));
-        };
+        }
+
 
         function drawLegend() {
             const legendRectSize = 15;
