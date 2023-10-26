@@ -25,19 +25,36 @@
             left: 20px;
         }
 
-        #sort-form,
-        #filter-form {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 10px;
-            border-radius: 8px;
-        }
 
-        #filter-form {
-            top: 60px;
-        }
+
+
+        #sort-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#filter-form {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#color-filter-form {
+    position: absolute;
+    top: 120px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+}
+
 
     </style>
 </head>
@@ -61,6 +78,13 @@
             <option value="20">20 premiers</option>
             <option value="all" selected>Tous</option>
         </select>
+    </form>
+
+    <form id="color-filter-form">
+        Filtrer par intervalle d'années:
+        <div id="color-checkboxes">
+            <!-- les checkboxes seront ajoutés dynamiquement -->
+        </div>
     </form>
 
     <div id="legend-container"></div>
@@ -110,6 +134,23 @@
             updateChart();
         });
 
+        
+
+        function createColorCheckboxes() {
+            const container = d3.select("#color-checkboxes");
+            colors.domain().forEach(year => {
+                let div = container.append("div");
+                div.append("input")
+                    .attr("type", "checkbox")
+                    .attr("id", "checkbox-" + year.replace(/[><]/g, ""))
+                    .attr("checked", true)
+                    .on("change", updateChart);
+                div.append("label")
+                    .attr("for", "checkbox-" + year.replace(/[><]/g, ""))
+                    .text(year);
+            });
+        }
+
 
 
         function updateChart() {
@@ -129,43 +170,49 @@
         case "alpha":
             stackedData.sort((a, b) => d3.ascending(a.Genre, b.Genre));
             break;
-        case "desc": // Cette partie sera pour le tri décroissant
+        case "desc": 
             stackedData.sort((a, b) => d3.descending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
             break;
-        case "asc": // Cette partie sera pour le tri croissant
+        case "asc": 
             stackedData.sort((a, b) => d3.ascending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
             break;
     }
 
+    let checkedYears = [];
+    colors.domain().forEach(year => {
+        if (d3.select("#checkbox-" + year.replace(/[><]/g, "")).property("checked")) {
+            checkedYears.push(year);
+        }
+    });
+
     // Pour avoir les `n` premiers éléments en haut, nous filtrons après le tri
     let displayData = stackedData.slice(0, numRows);
 
-            y.domain(displayData.map(d => d.Genre).reverse());
+    y.domain(displayData.map(d => d.Genre).reverse());
+    x.domain([0, d3.max(displayData, d => d3.sum(checkedYears, key => d[key] || 0))]);
 
-            x.domain([0, d3.max(displayData, d => d3.sum(colors.domain(), key => d[key] || 0))]);
+    checkedYears.forEach(year => {
+        svg.selectAll(".bar-" + year.replace(/[><]/g, ""))
+            .data(displayData)
+            .enter()
+            .append("rect")
+            .attr("class", "bar-" + year.replace(/[><]/g, ""))
+            .attr("y", d => y(d.Genre))
+            .attr("x", d => x(d3.sum(checkedYears.slice(0, checkedYears.indexOf(year)), key => d[key] || 0)))
+            .attr("width", d => x(d[year] || 0))
+            .attr("height", y.bandwidth())
+            .attr("fill", colors(year));
+    });
 
-            colors.domain().forEach((year, i) => {
-                svg.selectAll(".bar-" + year.replace(/[><]/g, ""))
-                    .data(displayData)
-                    .enter()
-                    .append("rect")
-                    .attr("class", "bar-" + year.replace(/[><]/g, ""))
-                    .attr("y", d => y(d.Genre))
-                    .attr("x", d => x(d3.sum(colors.domain().slice(0, i), key => d[key] || 0)))
-                    .attr("width", d => x(d[year] || 0))
-                    .attr("height", y.bandwidth())
-                    .attr("fill", colors(year));
-            });
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0,0)")
+        .call(d3.axisTop(x));
 
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0,0)")
-                .call(d3.axisTop(x));
-
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(d3.axisLeft(y));
-        }
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(d3.axisLeft(y));
+}
 
 
         function drawLegend() {
@@ -208,6 +255,10 @@
                 .style("fill", "black")
                 .text("Année de sortie de l'album");
         }
+
+        
+        createColorCheckboxes();
+        updateChart();
 
     </script>
 </body>
