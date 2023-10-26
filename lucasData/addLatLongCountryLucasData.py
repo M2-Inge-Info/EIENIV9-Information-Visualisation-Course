@@ -35,7 +35,7 @@ for index, row in df_data.iterrows():
     if percent >= oldPercent+5:
         oldPercent = percent
         # Affiche une barre de progression avec 20 carractères espacés de 5%
-        print('---------------------------------------------------', 'Progression: ', '[' + '='*int(percent/5) + ' '*(20-int(percent/5)) + ']', percent, '%', '--------------------------------------------------')
+        # print('---------------------------------------------------', 'Progression: ', '[' + '='*int(percent/5) + ' '*(20-int(percent/5)) + ']', percent, '%', '--------------------------------------------------')
 
     # Récupérer le pays de l'artiste
     pays_artiste = row['country']
@@ -77,6 +77,12 @@ print("Nombre d'artistes sans coordonnées: ", coordinatesMiss)
 
 # Afficher le nombre de pays sans coordonnées
 print("Nombre de pays sans coordonnées: ", countriesMiss)
+
+# Afficher le nombre d'artistes total
+print("CSV: ", df_LatLon['nbArtists'].sum())
+
+# Afficher le nombre d'artistes dans le JSON
+print("JSON: ", len(data_json.get('results').get('bindings')))
 
 
 

@@ -19,15 +19,15 @@ for artiste in data_json.get('results').get('bindings'):
     ville_artiste = artiste.get('city').get('value').lower()
     pays_artiste = artiste.get('country').get('value').lower()
 
-    # Vérifier si la ville de l'artiste est présente dans le DataFrame
-    if ville_artiste in df['city'].values:
-        # Récupérer l'index de la ville
-        index = df.index[df['city'] == ville_artiste].tolist()[0]
-        # Incrémenter le nombre d'artiste
-        df.at[index, 'nbArtists'] += 1
-    else:
+    # Vérifier si un index du DataFrame contient la ville et le pays de l'artiste
+    index = df.index[(df['city'] == ville_artiste) & (df['country'] == pays_artiste)].tolist()
+    if len(index) == 0:
         # Ajouter la ville et le pays dans le DataFrame avec pandas.concat en gardant l'index
         df = pd.concat([df, pd.DataFrame([[ville_artiste, pays_artiste, 1]], columns=['city', 'country', 'nbArtists'])], ignore_index=True)
+    else:
+        # Incrémenter le nombre d'artiste
+        df.at[index[0], 'nbArtists'] += 1
+
 
 
 # Trier le DataFrame par nombre d'artiste
@@ -41,3 +41,9 @@ print(df.head(5))
 
 # Afficher la taille du DataFrame
 print(df.shape)
+
+# Afficher le nombre d'artiste total
+print("CSV:", df['nbArtists'].sum())
+
+# Afficher le nombre d'artiste dans le JSON
+print("JSON:", len(data_json.get('results').get('bindings')))

@@ -22,16 +22,15 @@ df_LatLon = pd.DataFrame(columns=['city', 'country', 'nbArtists', 'latitude', 'l
 
 coordinatesMiss = 0
 citiesMiss = 0
+nbJsonSup = 0
 
-i = 0
 total = len(df_data)
 oldPercent = 0
-
 # Parcourir les données et compter le nombre d'artiste par ville et pays
 for index, row in df_data.iterrows():
-    i += 1
+
     # Afficher le pourcentage de progression
-    percent = int(i/total*100)
+    percent = int(index/total*100)
     if percent >= oldPercent+5:
         oldPercent = percent
         # Affiche une barre de progression avec 20 carractères espacés de 5%
@@ -52,12 +51,13 @@ for index, row in df_data.iterrows():
         df_LatLon = pd.concat([df_LatLon, pd.DataFrame([[ville_artiste, pays_artiste, row['nbArtists'], latitude, longitude]], columns=['city', 'country', 'nbArtists', 'latitude', 'longitude'])], ignore_index=True)
 
     except(IndexError):
-        print("Erreur: ", ville_artiste, pays_artiste)
+        # print("Erreur: ", ville_artiste, pays_artiste)
 
         # Supprimer du fichier json les artistes ayant une ville et un pays non trouvés
         for artiste in data_json.get('results').get('bindings'):
             if artiste.get('city').get('value').lower() == ville_artiste and artiste.get('country').get('value').lower() == pays_artiste:
                 data_json.get('results').get('bindings').remove(artiste)
+                nbJsonSup = nbJsonSup + 1
         
         coordinatesMiss += row['nbArtists']
         citiesMiss += 1
@@ -81,3 +81,13 @@ print("Nombre d'artistes sans coordonnées: ", coordinatesMiss)
 
 # Afficher le nombre de villes sans coordonnées
 print("Nombre de villes sans coordonnées: ", citiesMiss)
+
+# Afficher le nombre d'artistes supprimés du fichier json
+print("Nombre d'artistes supprimés du fichier json: ", nbJsonSup)
+
+# Afficher le nombre d'artistes total
+print("CSV: ", df_LatLon['nbArtists'].sum())
+
+# Afficher le nombre d'artistes dans le JSON
+print("JSON: ", len(data_json.get('results').get('bindings')))
+

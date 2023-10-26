@@ -32,6 +32,22 @@ h2 {
   border-radius: 15px;
 }
 
+h3.popup {
+  text-align: center;
+  padding: 15px;
+  background-color: lightblue;
+  border-radius: 15px;
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+h5 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+
 .footer {
 background-color: lightgray;
 text-align: center;
@@ -41,4 +57,81 @@ margin-bottom: 10px;
 margin-top: 50px;
 border-radius: 15px;
 border: black solid 1px;
+}
+
+
+.ville-button, .pays-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  text-decoration: underline;
+}
+
+.ville-button:hover, .pays-button:hover {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+
+
+.artist-columns {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row; /* Alignement horizontal */
+  flex-wrap: nowrap; /* Les colonnes ne se plient pas à la ligne */
+  text-align: center;
+}
+
+.artist-column1 {
+  flex: 1; /* Chaque colonne prend une part égale de l'espace disponible */
+  min-width: 140px; /* Largeur minimale de chaque colonne (ajustez selon vos besoins) */
+}
+
+.artist-column2 {
+  flex: 1; /* Chaque colonne prend une part égale de l'espace disponible */
+  min-width: 152px; /* Largeur minimale de chaque colonne (ajustez selon vos besoins) */
+  margin-left: 10px; /* Espacement entre les colonnes */
+  border-left: 2px solid #ccc; /* Ajoute un séparateur entre les colonnes */
+  padding-left: 10px; /* Ajoute un espacement entre le texte et le séparateur */
+}
+
+.centered-table {
+  max-width: 100%;
+  min-width: 300px;
+  text-align: center;
+  border-collapse: separate; /* Pour permettre le style de bordure */
+  border-spacing: 1px; /* Espace entre les cellules (ajustez selon vos préférences) */
+  /* Bordure extérieur 2px */
+  border: 2px solid #000;
+}
+
+.centered-table th, .centered-table td {
+  padding: 5px;
+  width: 50%;
+  border: 1px solid #ccc; /* Style de bordure pour les th et td */
+}
+
+.centered-table th {
+  background-color: #f2f2f2; /* Arrière-plan pour les cellules d'en-tête (th) */
+}
+
+.centered-table td {
+  background-color: #fff; /* Arrière-plan pour les cellules de données (td) */
+}
+
+
+.leaflet-popup-content {
+  background-color: #fff;
+  padding-bottom: 10px;
+  border-radius: 15px;
+  
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  /* Ajouter de la transparence à la popup */
+  /* background-color: rgba(255,255,255,0.5); */
 }

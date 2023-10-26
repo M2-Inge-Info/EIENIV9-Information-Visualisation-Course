@@ -1,11 +1,15 @@
-# Compte le nombre d'artiste par pays à partir du fichier csv lucas_data_cities_latlong.csv et enregistre la liste de pays et le nombre d'artiste dans le fichier lucas_data_countries.csv.
-
-
 import pandas as pd
 import csv
+import json
 
 fileCSV = "../src/data/lucas_data_cities_latlong.csv"
 fileCSV2 = "../src/data/lucas_data_countries.csv"
+
+fileJSON = "../src/data/lucas_data_filtered2.json"
+
+# Charger le fichier JSON dans une structure de données Python
+with open(fileJSON, 'r', encoding='utf-8') as json_file:
+    data_json = json.load(json_file)
 
 # Charger le fichier CSV dans un DataFrame
 df_cities = pd.read_csv(fileCSV, sep=';')
@@ -41,3 +45,9 @@ print(df.head(5))
 
 # Afficher la taille du DataFrame
 print(df.shape)
+
+# Afficher le nombre d'artiste total
+print("CSV:", df['nbArtists'].sum())
+
+# Afficher le nombre d'artiste dans le JSON
+print("JSON:", len(data_json.get('results').get('bindings')))

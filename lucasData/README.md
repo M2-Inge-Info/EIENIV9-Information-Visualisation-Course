@@ -55,9 +55,11 @@ Echelle logarithmique, ou extremum défini.
 Jouer sur les niveaux de zoom
 Colorier les pays en fonction du nombre d'artistes (circle).
 Click sur un pays zoom sur la ville avec le plus d'artiste dans la ville.
-
 Popup avec nom des artistes (plusieurs colonnes ci-besoin).
 Click sur le nom dans le popup envoie sur la page Wasabi de l'artiste.
+Click sur une ville / pays zoom sur la ville / pays.
+
+Filtre par genre, age, vivant ou mort.
 -------------------------------------------------------------------------
 
 

@@ -1008,32 +1008,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d7f12856847be81b3e8ef8"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Albert One"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1956-04-23"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Italo Disco"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Italy"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Italy"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d7f13156847be81b3e8f0c"
                 },
                 "name": {
@@ -2326,32 +2300,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d7f7b853a7ddfc01f8ffb4"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Andy Stochansky"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1965"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Indie Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Toronto"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Los Angeles"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d7f7bb53a7ddfc01f8ffbc"
                 },
                 "name": {
@@ -3407,32 +3355,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d7fdcb53a7ddfc01f9091e"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Aṣa"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1982-09-17"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Jazz, Folk, Soul"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Paris"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Nigeria"
                 }
             },
             {
@@ -6404,32 +6326,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d8086353a7ddfc01f91820"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Brendan Perry"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1959-06-30"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Folk"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Whitechapel"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Ireland"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d8087453a7ddfc01f91840"
                 },
                 "name": {
@@ -8187,36 +8083,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Canada"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d80ebd53a7ddfc01f9218f"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Champion Jack Dupree"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1910-07-04"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1992-01-21"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Blues, Boogie Woogie"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "New Orleans"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
                 }
             },
             {
@@ -10530,32 +10396,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d8188f53a7ddfc01f92ee7"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "DaForce"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1977-11-09"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Experimental, Hip Hop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Montreal"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d818a853a7ddfc01f92eff"
                 },
                 "name": {
@@ -10603,36 +10443,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d818db53a7ddfc01f92f3f"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Dalida"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1933-01-17"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1987-05-03"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Schlager, Chanson, French Pop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Cairo"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "France"
                 }
             },
             {
@@ -12532,32 +12342,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d8200053a7ddfc01f939b2"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Dillon"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1988"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Electronic, Singer-Songwriter, Indie Pop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Brazil"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d8200053a7ddfc01f939b3"
                 },
                 "name": {
@@ -13534,32 +13318,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d8254253a7ddfc01f941aa"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Ebi"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1949-06-19"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Tehran"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d8257f53a7ddfc01f941ee"
                 },
                 "name": {
@@ -14349,32 +14107,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d827bd53a7ddfc01f944ed"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Ellen McIlwaine"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1945-10-01"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Blues, World Music"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Nashville"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Canada"
                 }
             },
             {
@@ -15826,32 +15558,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d82db453a7ddfc01f94d65"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Femi Kuti"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1962-06-16"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Jazz, Afrobeat"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "London"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Nigeria"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d82dca53a7ddfc01f94d8f"
                 },
                 "name": {
@@ -16440,32 +16146,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d830f053a7ddfc01f9525b"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Frank Schöbel"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1942-12-11"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Schlager"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Leipzig"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "East Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d8313753a7ddfc01f9528f"
                 },
                 "name": {
@@ -16969,36 +16649,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Sweden"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d8320953a7ddfc01f953bf"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Friedrich Hollaender"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1896-10-18"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1976-01-18"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Cabaret, Comedy, Musical, Chanson, Soundtrack/Movie"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "London"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
                 }
             },
             {
@@ -19826,36 +19476,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d83b2b53a7ddfc01f96019"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Hanns Eisler"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1898-07-06"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1962-09-06"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Classical, Folk, Chanson, Protest Song"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Leipzig"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Austria"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d83b3153a7ddfc01f96023"
                 },
                 "name": {
@@ -20468,32 +20088,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d83ce153a7ddfc01f96286"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Helen Schneider"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1952-12-23"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Jazz, Rock, Folk, Chanson"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Brooklyn"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d83ce453a7ddfc01f96287"
                 },
                 "name": {
@@ -21036,36 +20630,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d83eee53a7ddfc01f965d3"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Horst Koch"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1943-06-24"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "2009-09-10"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Folk, Singer-Songwriter, Comedy, Ballad, Chanson, Parody, Spoken Word"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Dublin"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d83f4a53a7ddfc01f96654"
                 },
                 "name": {
@@ -21494,32 +21058,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d840b953a7ddfc01f9686c"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Ian Thomas (BE)"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1997-04-30"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, R&B"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Antwerp"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Belgium"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d840e453a7ddfc01f968ad"
                 },
                 "name": {
@@ -21571,32 +21109,6 @@
                 "city": {
                     "type": "literal",
                     "value": "New Orleans"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d840ff53a7ddfc01f968e9"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Iggy Azalea"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1990-06-07"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Trap, Hip Hop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Sydney"
                 },
                 "country": {
                     "type": "literal",
@@ -21861,32 +21373,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d8428f53a7ddfc01f96b5c"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Inspectah Deck"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1970-07-06"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Hip Hop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "The Bronx"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Staten Island"
                 }
             },
             {
@@ -22181,32 +21667,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d843da53a7ddfc01f96d15"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Işın Karaca"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1973-03-07"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "London"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Turkey"
                 }
             },
             {
@@ -22663,36 +22123,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United Kingdom"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d844bf53a7ddfc01f96e77"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Jacques Offenbach"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1819-06-20"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1880-10-05"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Romantic"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Cologne"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "France"
                 }
             },
             {
@@ -27344,36 +26774,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d84ce953a7ddfc01f97a45"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Josephine Baker"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1906-06-03"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1975-04-12"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Vocal, Jazz, Cabaret, French Pop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "St. Louis"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "France"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d84d1853a7ddfc01f97a60"
                 },
                 "name": {
@@ -28047,32 +27447,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d84e9c53a7ddfc01f97c46"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Julieta Venegas"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1970-11-24"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Latin"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Long Beach"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Mexico"
                 }
             },
             {
@@ -29532,32 +28906,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d8527953a7ddfc01f981fd"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Kevin Burke"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1950"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Folk"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "London"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Ireland"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d8527f53a7ddfc01f98203"
                 },
                 "name": {
@@ -29639,32 +28987,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Canada"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d852a553a7ddfc01f98233"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Kevin Shields"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1963-05-21"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Alternative Rock, Post-Punk, Shoegazing"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Queens"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Ireland"
                 }
             },
             {
@@ -30309,36 +29631,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Canada"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d8546d53a7ddfc01f98511"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Knut Kiesewetter"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1941-09-13"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "2016-12-28"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Blues, Jazz, Folk, Singer-Songwriter, Chanson, Folk Rock, Pop Rock, Soul, Volkslied"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Szczecin"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
                 }
             },
             {
@@ -31486,32 +30778,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d858a153a7ddfc01f98b4c"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Lee Scratch Perry"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1936-03-20"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Ska, Dub, Reggae, Rocksteady"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Kendal"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Jamaica"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d858af53a7ddfc01f98b62"
                 },
                 "name": {
@@ -32134,32 +31400,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d85a1a53a7ddfc01f98d8c"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Liam Finn"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1983-09-24"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Indie Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Melbourne"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "New Zealand"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d85a2153a7ddfc01f98da0"
                 },
                 "name": {
@@ -32461,32 +31701,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d85acf53a7ddfc01f98ec5"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Lill Lindfors"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1940-05-12"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Vocal, Jazz, Schlager, Folk, Singer-Songwriter, Ballad, Bossa Nova"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Helsinki"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Sweden"
                 }
             },
             {
@@ -33243,32 +32457,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d85def53a7ddfc01f9937a"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Lou Barlow"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1966-07-17"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Indie Folk, Lo-Fi"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Dayton"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Amherst"
                 }
             },
             {
@@ -35346,32 +34534,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d93864ce06f50c0fed7f9e"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Margo Timmins"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1961-01-27"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Country, Blues"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Montreal"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Toronto"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d93860ce06f50c0fed7f95"
                 },
                 "name": {
@@ -35523,36 +34685,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d938d4ce06f50c0fed802e"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Marika Rökk"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1913-11-03"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "2004-05-16"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Schlager, Musical, Chanson, Soundtrack/Movie"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Cairo"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Austria"
                 }
             },
             {
@@ -36418,32 +35550,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d93abace06f50c0fed82f8"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Mat Kearney"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1978-12-01"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Eugene"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Nashville"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d93af0ce06f50c0fed8337"
                 },
                 "name": {
@@ -36491,32 +35597,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d93b2ace06f50c0fed83a4"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Matthew Barber"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1977-01-10"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Indie Pop, Pop Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Port Credit"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Canada"
                 }
             },
             {
@@ -36927,36 +36007,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Japan"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d93bdace06f50c0fed84ad"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Maynard Ferguson"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1928-05-04"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "2006-08-24"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Jazz"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Montreal"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United States"
                 }
             },
             {
@@ -37631,32 +36681,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United Kingdom"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d93e08ce06f50c0fed8804"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Michael Holm"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1943-07-29"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Schlager"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Szczecin"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
                 }
             },
             {
@@ -40246,32 +39270,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d94e3fcc2ddd0c0f6b85f1"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Nicki Minaj"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1982-12-08"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "R&B, Hip Hop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Port of Spain"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Queens"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d94e49cc2ddd0c0f6b8606"
                 },
                 "name": {
@@ -40505,32 +39503,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United Kingdom"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d94ebacc2ddd0c0f6b86c5"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Nikka Costa"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1972-06-04"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Funk, Pop, Singer-Songwriter, Soul, Children's Music"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Tokyo"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United States"
                 }
             },
             {
@@ -41692,32 +40664,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d95562cc2ddd0c0f6b9129"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Patrick Watson"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1979"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Rock, Indie Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Lancaster"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Canada"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d9556ccc2ddd0c0f6b9139"
                 },
                 "name": {
@@ -42862,32 +41808,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d957e4cc2ddd0c0f6b9441"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Peter Plate"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1967-07-01"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Schlager, Singer-Songwriter, Chanson, Soundtrack/Movie"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "New Delhi"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d957edcc2ddd0c0f6b9450"
                 },
                 "name": {
@@ -43134,36 +42054,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d95869cc2ddd0c0f6b94e7"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Phil Lynott"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1949-08-20"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1986-01-04"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Rock, Folk, Hard Rock, Heavy Metal, Psychedelic Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "West Bromwich"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Ireland"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d95880cc2ddd0c0f6b9514"
                 },
                 "name": {
@@ -43263,32 +42153,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Italy"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d9590bcc2ddd0c0f6b95d8"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Pigeon John"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1972-11-30"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Christian Hip Hop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Omaha"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Los Angeles"
                 }
             },
             {
@@ -44602,32 +43466,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d95fe9cc2ddd0c0f6ba00c"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Regina Spektor"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1980-02-18"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Blues, Acoustic, Alternative Rock, Folk Rock, Indie Rock, Piano Rock, Anti-Folk"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Moskva"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d9600bcc2ddd0c0f6ba035"
                 },
                 "name": {
@@ -44799,36 +43637,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Hungary"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d9612ccc2ddd0c0f6ba1e2"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Richard Anthony"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1938-01-13"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "2015-04-19"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Jazz, Rock, Folk, Chanson, French Pop, World Music, Rock 'N' Roll"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Cairo"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "France"
                 }
             },
             {
@@ -45451,32 +44259,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d96242cc2ddd0c0f6ba360"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Ritchie"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1952-03-06"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Pop Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Beckenham"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Brazil"
                 }
             },
             {
@@ -47372,36 +46154,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d96541cc2ddd0c0f6ba7bf"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Rudi Carrell"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1934-12-19"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "2006-07-07"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Schlager, Comedy, Ballad, Parody, Spoken Word"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Alkmaar"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d96542cc2ddd0c0f6ba7c1"
                 },
                 "name": {
@@ -47897,32 +46649,6 @@
                 "country": {
                     "type": "literal",
                     "value": "Canada"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d9674acc2ddd0c0f6baab8"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Sami Yusuf"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1980-07"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Religious, Folk, Nasheed"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Tehran"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United Kingdom"
                 }
             },
             {
@@ -48490,36 +47216,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d96904cc2ddd0c0f6bad3f"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Schobert Schulz"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1941-07-02"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1992-09-24"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Singer-Songwriter, Comedy, Ballad, Chanson, Protest Song, Volkslied"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Szczecin"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d9693acc2ddd0c0f6badab"
                 },
                 "name": {
@@ -48601,32 +47297,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d9699acc2ddd0c0f6bae37"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Seal"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1963-02-19"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, R&B, Soft Rock, Soul"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Paddington"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Los Angeles"
                 }
             },
             {
@@ -49364,36 +48034,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d96cc3cc2ddd0c0f6bb316"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Sid Vicious"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1957-05-10"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1979-02-02"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Punk Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Lewisham"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United Kingdom"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d96cc7cc2ddd0c0f6bb31d"
                 },
                 "name": {
@@ -49830,32 +48470,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d96e8ccc2ddd0c0f6bb5cd"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Sky Du Mont"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1947-05-20"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Comedy, Soundtrack/Movie"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Buenos Aires"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Germany"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d96e97cc2ddd0c0f6bb5e2"
                 },
                 "name": {
@@ -50050,32 +48664,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d96f82cc2ddd0c0f6bb747"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Smokey Robinson"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1940-02-19"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "R&B, Soul"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Detroit"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Las Vegas"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d96f87cc2ddd0c0f6bb752"
                 },
                 "name": {
@@ -50231,36 +48819,6 @@
                 "city": {
                     "type": "literal",
                     "value": "Brownsville"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d97064cc2ddd0c0f6bb8c6"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Son House"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1902-03-21"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1988-10-19"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Blues, Delta Blues, Blues Revival"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Lyon"
                 },
                 "country": {
                     "type": "literal",
@@ -50922,32 +49480,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d973dacc2ddd0c0f6bbe05"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Steve Angello"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1982-11-22"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "House, Electro House, Progressive House"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Athens"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Sweden"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d973d6cc2ddd0c0f6bbdfc"
                 },
                 "name": {
@@ -51099,32 +49631,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United Kingdom"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d9740acc2ddd0c0f6bbe40"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Steve Kilbey"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1954-09-13"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Alternative Rock, Dream Pop, Post-Punk"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Welwyn Garden City"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Australia"
                 }
             },
             {
@@ -52652,32 +51158,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d978c1cc2ddd0c0f6bc5a7"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Tatiana"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1968-12-12"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Rock, Children's Music"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Philadelphia"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Mexico"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d978cccc2ddd0c0f6bc5c4"
                 },
                 "name": {
@@ -53642,32 +52122,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d98882cc2ddd0c0f6bdb85"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Tim Reynolds"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1957-12-15"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Funk, Classical, Jazz, R&B, Americana, Instrumental Rock, Jazz Fusion, Psychedelic Rock, Rock 'N' Roll"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Wiesbaden"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d98883cc2ddd0c0f6bdb88"
                 },
                 "name": {
@@ -54169,32 +52623,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d989d0cc2ddd0c0f6bdd5b"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Tom Scott"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1948-05-19"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Jazz Fusion, Smooth Jazz, West Coast Jazz"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Los Angeles"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Ventura"
                 }
             },
             {
@@ -55472,32 +53900,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d98f87cc2ddd0c0f6be5ac"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Van Morrison"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1945-08-31"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Blues, Jazz, Rock, Folk, Folk Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Belfast"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Northern Ireland"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d98f96cc2ddd0c0f6be5c4"
                 },
                 "name": {
@@ -55683,36 +54085,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d990b3cc2ddd0c0f6be76e"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Vico Torriani"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1920-09-21"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1998-02-26"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Pop, Schlager, Musical"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Geneva"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Switzerland"
                 }
             },
             {
@@ -56826,32 +55198,6 @@
             {
                 "subject": {
                     "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d99415cc2ddd0c0f6bed19"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Will Butler"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1982-10-06"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Alternative Rock, Indie Rock"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "California"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Canada"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
                     "value": "http://ns.inria.fr/wasabi/artist/56d9941ecc2ddd0c0f6bed29"
                 },
                 "name": {
@@ -57015,36 +55361,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d99467cc2ddd0c0f6bed7c"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Willie Mabon"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1925-10-24"
-                },
-                "death": {
-                    "type": "literal",
-                    "value": "1985-04-19"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "R&B"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Memphis"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "France"
                 }
             },
             {
@@ -57541,32 +55857,6 @@
                 "country": {
                     "type": "literal",
                     "value": "United States"
-                }
-            },
-            {
-                "subject": {
-                    "type": "uri",
-                    "value": "http://ns.inria.fr/wasabi/artist/56d9964acc2ddd0c0f6bf025"
-                },
-                "name": {
-                    "type": "literal",
-                    "value": "Ya Kid K"
-                },
-                "birth": {
-                    "type": "literal",
-                    "value": "1973-01-26"
-                },
-                "genres": {
-                    "type": "literal",
-                    "value": "Hip Hop"
-                },
-                "city": {
-                    "type": "literal",
-                    "value": "Kinshasa"
-                },
-                "country": {
-                    "type": "literal",
-                    "value": "Belgium"
                 }
             },
             {

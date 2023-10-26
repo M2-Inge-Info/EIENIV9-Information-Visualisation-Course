@@ -52,3 +52,5 @@ with open(output_file, "w", encoding="utf-8") as json_file:
     json.dump(results, json_file, ensure_ascii=False, indent=4)
 
 print(f"Les données ont été enregistrées dans {output_file}")
+
+print("Nombre d'artiste:", len(results["results"]["bindings"]))
