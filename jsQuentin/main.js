@@ -1,12 +1,6 @@
-const margin = {
-  top: 100,
-  right: 30,
-  bottom: 40,
-  left: 200
-},
-
-width = 1200 - margin.left - margin.right,
-height = 5000 - margin.top - margin.bottom;
+const margin = { top: 100, right: 30, bottom: 40, left: 200 },
+      width = 1200 - margin.left - margin.right,
+      height = 5000 - margin.top - margin.bottom;
 
 const x = d3.scaleLinear().range([0, width]);
 const y = d3.scaleBand().range([height, 0]).padding(0.1);
@@ -19,29 +13,29 @@ const svg = d3.select("body").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  .attr("transform", `translate(${margin.left},${margin.top})`);
 
 let stackedData = [];
 
 d3.csv("src/data/quentin_population_album.csv").then(function (data) {
-  const dataSum = d3.nest()
-      .key(d => d.Genre)
-      .key(d => d.année)
-      .rollup(v => d3.sum(v, d => d["Nombre d'albums"]))
-      .entries(data);
-
-  stackedData = dataSum.map(d => {
-      let obj = {
-          Genre: d.key
-      };
-      d.values.forEach(v => obj[v.key] = v.value);
-      return obj;
+  const groupByGenre = d3.group(data, d => d.Genre);
+  const dataSum = Array.from(groupByGenre, ([key, value]) => {
+    const sumByYear = Array.from(d3.group(value, d => d.année), ([key, value]) => ({
+      key,
+      value: d3.sum(value, d => d["Nombre d'albums"])
+    }));
+    const result = { Genre: key };
+    sumByYear.forEach(({ key, value }) => {
+      result[key] = value;
+    });
+    return result;
   });
+
+  stackedData = dataSum;
 
   drawLegend();
   updateChart();
 });
-
 
 
 function createColorCheckboxes() {
@@ -62,61 +56,72 @@ function createColorCheckboxes() {
 
 
 function updateChart() {
-svg.selectAll("*").remove();
+  svg.selectAll("*").remove();
 
-let sortOrder = d3.select("#sortOrder").node().value;
-let numRows = d3.select("#numRows").node().value;
+  let sortOrder = d3.select("#sortOrder").node().value;
+  let numRows = d3.select("#numRows").node().value;
 
-if (numRows === "all") {
-numRows = stackedData.length;
-} else {
-numRows = parseInt(numRows);
-}
+  if (numRows === "all") {
+    numRows = stackedData.length;
+  } else {
+    numRows = parseInt(numRows);
+  }
 
-// Tri selon l'ordre choisi
-switch (sortOrder) {
-case "alpha":
-  stackedData.sort((a, b) => d3.ascending(a.Genre, b.Genre));
-  break;
-case "desc": 
-  stackedData.sort((a, b) => d3.descending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
-  break;
-case "asc": 
-  stackedData.sort((a, b) => d3.ascending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
-  break;
-}
+  // Tri selon l'ordre choisi
+  switch (sortOrder) {
+    case "alpha":
+      stackedData.sort((a, b) => d3.ascending(a.Genre, b.Genre));
+      break;
+    case "desc": 
+      stackedData.sort((a, b) => d3.descending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
+      break;
+    case "asc": 
+      stackedData.sort((a, b) => d3.ascending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
+      break;
+  }
 
-let checkedYears = [];
-colors.domain().forEach(year => {
-if (d3.select("#checkbox-" + year.replace(/[><]/g, "")).property("checked")) {
-  checkedYears.push(year);
-}
-});
-
-// Pour avoir les `n` premiers éléments en haut, nous filtrons après le tri
-let displayData = stackedData.slice(0, numRows);
-
-y.domain(displayData.map(d => d.Genre).reverse());
-x.domain([0, d3.max(displayData, d => d3.sum(checkedYears, key => d[key] || 0))]);
-
-checkedYears.forEach(year => {
-  svg.selectAll(".bar-" + year.replace(/[><]/g, ""))
-  .data(displayData)
-  .enter()
-  .append("rect")
-  .attr("class", "bar-" + year.replace(/[><]/g, ""))
-  .attr("y", d => y(d.Genre))
-  .attr("x", d => x(d3.sum(checkedYears.slice(0, checkedYears.indexOf(year)), key => d[key] || 0)))
-  .attr("width", d => x(d[year] || 0))
-  .attr("height", y.bandwidth())
-  .attr("fill", colors(year))
-  .on("mouseover", function(event, d) {
-    showInfoBox(event, d.Genre, year, d[year]);
-  })
-  .on("mouseout", function() {
-    hideInfoBox();
+  let checkedYears = [];
+  colors.domain().forEach(year => {
+    if (d3.select("#checkbox-" + year.replace(/[><]/g, "")).property("checked")) {
+      checkedYears.push(year);
+    }
   });
-});
+
+  // Pour avoir les `n` premiers éléments en haut, nous filtrons après le tri
+  let displayData = stackedData.slice(0, numRows);
+
+  y.domain(displayData.map(d => d.Genre).reverse());
+  x.domain([0, d3.max(displayData, d => d3.sum(checkedYears, key => d[key] || 0))]);
+
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0,0)")
+    .call(d3.axisTop(x));
+
+  svg.append("g")
+    .attr("class", "y axis")
+    .call(d3.axisLeft(y));
+
+  checkedYears.forEach(year => {
+    svg.selectAll(".bar-" + year.replace(/[><]/g, ""))
+      .data(displayData)
+      .enter()
+      .append("rect")
+      .attr("class", "bar-" + year.replace(/[><]/g, ""))
+      .attr("y", d => y(d.Genre))
+      .attr("x", d => x(d3.sum(checkedYears.slice(0, checkedYears.indexOf(year)), key => d[key] || 0)))
+      .attr("width", d => x(d[year] || 0) - x(0))
+      .attr("height", y.bandwidth())
+      .attr("fill", colors(year))
+      .on("mouseover", (event, d) => {
+        const genre = d.Genre;
+        const albumCount = d[year] || 0;
+        showInfoBox(event, genre, year, albumCount);
+      })
+      .on("mouseout", hideInfoBox)
+
+  });
+
 
 svg.append("g")
 .attr("class", "x axis")
@@ -173,13 +178,4 @@ function drawLegend() {
 
 createColorCheckboxes();
 updateChart();
-
-
-
-
-
-
-
-
-
 

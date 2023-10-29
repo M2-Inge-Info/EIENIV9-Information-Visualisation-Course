@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stacked Bar Chart</title>
 
-    <link rel="stylesheet" href="cssQuentin\style.css">
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="cssQuentin/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.js" integrity="sha512-NmSTfudjn1FCaFMQ+f4xveBmwRJn5ep8Wu+YOeq+CeExhFtKvwhfKVXFX3tGxoGWxu8Fl83qm9nE8/Hkc1dWZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
 
 </head>
 
@@ -27,7 +28,8 @@
         <select id="numRows" onchange="updateChart()">
             <option value="5">5 premiers</option>
             <option value="10">10 premiers</option>
-            <option value="20">20 premiers</option>
+            <option value="20">25 premiers</option>
+            <option value="50">50 premiers</option>
             <option value="all" selected>Tous</option>
         </select>
     </form>
@@ -40,10 +42,11 @@
     </form>
 
     <div id="legend-container"></div>
+    <ul id="album-list"></ul>
 
     
-    <script src="jsQuentin\main.js"></script>
-    <script src="jsQuentin\infobox.js"></script>
+    <script src="jsQuentin/main.js"></script>
+    <script src="jsQuentin/infobox.js"></script>
 </body>
 
 </html>
