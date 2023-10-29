@@ -19,19 +19,18 @@ csv_lines = []
 
 for item in filtered_solo_data:
     artist_names = item["nameSolo"]["value"].split("; ")
-    birthdays = item["births"]["value"].split("; ")
     title = item["title"]["value"]
     genre = item["genre"]["value"]
     release_date = item["date"]["value"]
     nb_members = "No"
 
-    for artist_name, birthday in zip(artist_names, birthdays):
-        csv_lines.append([artist_name, birthday, title, genre, release_date, nb_members])
+    for artist_name in zip(artist_names):
+        csv_lines.append([artist_name, title, genre, release_date, nb_members])
 
 # Écrire les données dans un fichier CSV
 with open(output_file, 'w', newline='', encoding='utf-8') as csv_file:
     csv_writer = csv.writer(csv_file)
-    csv_writer.writerow(["Nom de l'artiste", "Date d'anniversaire", "Titre Album", "Genre", "Date de sortie", "Groupe"])
+    csv_writer.writerow(["Nom de l'artiste", "Titre Album", "Genre", "Date de sortie", "Groupe"])
     csv_writer.writerows(csv_lines)
 
 print(f"Les données ont été filtrées et enregistrées dans {output_file}")

@@ -20,8 +20,8 @@ PREFIX wsb: <http://ns.inria.fr/wasabi/ontology/>
 PREFIX mo: <http://purl.org/ontology/mo/> 
 PREFIX schema: <http://schema.org/> 
 
-SELECT ?subject ?title ?genre ?date ?performer ?artistType (COUNT(?members) as ?nbMembers) ?nameSolo (GROUP_CONCAT(?name; separator="; ") as ?names) (GROUP_CONCAT(?birth; separator="; ") as ?births) 
-from <http://ns.inria.fr/wasabi/graph/albums> from <http://ns.inria.fr/wasabi/graph/artists>
+SELECT ?subject ?title ?genre ?date ?performer ?artistType (COUNT(?members) as ?nbMembers) ?nameSolo (GROUP_CONCAT(?name; separator="; ") as ?names)
+FROM <http://ns.inria.fr/wasabi/graph/albums> FROM <http://ns.inria.fr/wasabi/graph/artists>
 WHERE {
     ?subject <http://purl.org/ontology/mo/genre> ?genre ;
              <http://purl.org/dc/terms/title> ?title ;
@@ -33,21 +33,20 @@ WHERE {
                    <http://xmlns.com/foaf/0.1/name> ?nameSolo ;
                    schema:members ?members .
 
-        ?members <http://xmlns.com/foaf/0.1/name> ?name ;
-                 <http://schema.org/birthDate> ?birth .
+        ?members <http://xmlns.com/foaf/0.1/name> ?name .
 
         FILTER (?artistType = wsb:Artist_Group)
     }
     UNION
     {
         ?performer a ?artistType ;
-                   <http://xmlns.com/foaf/0.1/name> ?nameSolo ;
-                   <http://schema.org/birthDate> ?birth .
+                   <http://xmlns.com/foaf/0.1/name> ?nameSolo .
 
         FILTER (?artistType = wsb:Artist_Person || ?artistType = wsb:Choir || ?artistType = wsb:Orchestra) 
     }
 
 }
+GROUP BY ?subject ?title ?genre ?date ?performer ?artistType ?nameSolo
 ORDER BY ?subject
 """
 
