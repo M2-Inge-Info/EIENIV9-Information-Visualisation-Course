@@ -55,6 +55,112 @@ function createColorCheckboxes() {
 
 
 
+
+let infoBox = d3.select("body")
+    .append("div")
+    .attr("class", "infobox")
+    .style("position", "absolute")
+    .style("padding", "10px")
+    .style("background", "rgba(255, 255, 255, 0.9)")
+    .style("border", "1px solid black")
+    .style("border-radius", "5px")
+    .style("pointer-events", "none")
+    .style("visibility", "hidden")
+    .style("max-width", "250px")
+    .style("word-wrap", "break-word");
+
+    function showInfoBox(event, genre, year, albumCount, htmlContent) {
+        if (htmlContent) {
+          infoBox.html(htmlContent);
+        } else {
+        console.log("Genre: ", genre);
+        console.log("Année: ", year);
+        console.log("Nombre d'albums: ", albumCount);
+    
+        let x = event.pageX;
+        let y = event.pageY;
+    
+        // Afficher temporairement l'infobox pour calculer sa largeur
+        infoBox.style("visibility", "visible");
+    
+        let infoBoxWidth = infoBox.node().getBoundingClientRect().width;
+        let pageWidth = window.innerWidth;
+    
+        // Si l'infobox dépasse la largeur de la page, ajustez la position X
+        if (x + infoBoxWidth + 30 > pageWidth) {
+            x = x - infoBoxWidth - 20;
+        }
+    
+        infoBox
+            .style("left", x + 10 + "px")
+            .style("top", y + 10 + "px")
+            .html(`
+                <strong>Genre:</strong> ${genre}<br>
+                <strong>Année:</strong> ${year}<br>
+                <strong>Nombre d'albums:</strong> ${albumCount}
+            `);
+    }
+}
+
+    function hideInfoBox() {
+        infoBox.style("visibility", "hidden");
+    }
+
+
+
+
+
+
+
+    let clickPopup = d3.select("body")
+    .append("div")
+    .attr("class", "click-popup")
+    .style("position", "absolute")
+    .style("padding", "10px")
+    .style("background", "white")
+    .style("border", "1px solid black")
+    .style("visibility", "hidden");
+
+    clickPopup.append("span")
+    .attr("class", "close-btn")
+    .style("position", "absolute")
+    .style("top", "0")
+    .style("right", "5px")
+    .style("cursor", "pointer")
+    .style("font-size", "16px") // Assurez-vous que la taille de la police est assez grande
+    .style("font-weight", "bold") // Rendre la croix plus visible
+    .text("X")
+    .on("click", function() {
+        hideClickPopup();
+        d3.selectAll(".bar").style("stroke", null).style("stroke-width", null);
+    });
+    
+
+
+
+
+
+    function showClickPopup(event) {
+      let x = event.pageX + 20; // Ajoutez une valeur pour déplacer à droite
+      let y = event.pageY;
+  
+      // Afficher la fenêtre contextuelle
+      clickPopup
+          .style("left", x + "px")
+          .style("top", y + "px")
+          .style("visibility", "visible")
+          .text("TODO");
+  }
+  function hideClickPopup() {
+    clickPopup.style("visibility", "hidden");
+    d3.selectAll(".bar").style("stroke", null).style("stroke-width", null); // Enlève la bordure de toutes les barres
+}
+
+
+
+
+
+
 function updateChart() {
   svg.selectAll("*").remove();
 
@@ -102,24 +208,42 @@ function updateChart() {
     .attr("class", "y axis")
     .call(d3.axisLeft(y));
 
-  checkedYears.forEach(year => {
-    svg.selectAll(".bar-" + year.replace(/[><]/g, ""))
-      .data(displayData)
-      .enter()
-      .append("rect")
-      .attr("class", "bar-" + year.replace(/[><]/g, ""))
+    checkedYears.forEach(year => {
+      svg.selectAll(".bar-" + year.replace(/[><]/g, ""))
+        .data(displayData)
+        .enter()
+        .append("rect")
+        .attr("class", "bar-" + year.replace(/[><]/g, ""))  
       .attr("y", d => y(d.Genre))
       .attr("x", d => x(d3.sum(checkedYears.slice(0, checkedYears.indexOf(year)), key => d[key] || 0)))
       .attr("width", d => x(d[year] || 0) - x(0))
       .attr("height", y.bandwidth())
       .attr("fill", colors(year))
       .on("mouseover", (event, d) => {
+        d3.select(this).style("stroke", "black").style("stroke-width", "2px");
         const genre = d.Genre;
         const albumCount = d[year] || 0;
         showInfoBox(event, genre, year, albumCount);
       })
-      .on("mouseout", hideInfoBox)
-
+      .on("mouseover", function(event, d) {
+        d3.select(this).style("stroke", "black").style("stroke-width", "2px");
+        const genre = d.Genre;
+        const albumCount = d[year] || 0;
+        showInfoBox(event, genre, year, albumCount);
+      })
+      .on("mouseout", function() {
+        d3.select(this).style("stroke", null).style("stroke-width", null);
+        hideInfoBox();
+      })
+      .on("click", function(event, d) {
+        if (clickPopup.style("visibility") === "hidden") {
+          d3.selectAll(".bar").style("stroke", null).style("stroke-width", null); // Enlève la bordure de toutes les barres
+          d3.select(this).style("stroke", "red").style("stroke-width", "2px"); // Ajoute une bordure rouge à la barre cliquée
+          showClickPopup(event);
+        } else {
+          hideClickPopup();
+        }
+      });
   });
 
 
