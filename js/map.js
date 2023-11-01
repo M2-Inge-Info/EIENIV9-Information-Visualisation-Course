@@ -385,7 +385,7 @@ function setupArtistSearch() {
         filteredArtists.then(function(artist) {
             for(i=0; i<artist.length; i++) {
                 var artistName = strUcFirst(artist[i][1]); // Utilisez l'index 1 pour le nom de l'artiste
-                console.log(artistName);
+                // console.log(artistName);
                 if (artistName.includes(searchQuery)) {
                     // Créez une nouvelle option pour la datalist avec la suggestion d'artiste
                     var suggestionOption = document.createElement("option");
