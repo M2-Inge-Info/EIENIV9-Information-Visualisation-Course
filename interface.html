@@ -9,6 +9,10 @@
 <script src="./js/jquery-1.9.1.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 
+<!-- Ajoutez les fichiers CSS et JavaScript de noUiSlider -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.js"></script>
+
 
 <!DOCTYPE html>
 <html lang>
@@ -30,12 +34,50 @@
             <h2>Lieu de naissance des artistes (bubble map)</h2>
             <div id="map"></div>
         </div>
+
+        <div id="filters">
+            <h2>Filtres</h2>
+            <div id="filters-content" class="filter-columns">
+
+                <div class="filter-column">
+                    <label for="age-slider">Âge :</label>
+                    <div id="age-slider-container">
+                        <div id="age-slider"></div>
+                    </div>
+                    <div id="selected-age-range">Plage d'âge sélectionnée : 0 - 100 ans</div>
+                </div>
+
+                <div class="filter-column">
+                    <label for="genre-select">Genre :</label>
+                    <select id="genre-select">
+                    <option value="Tous">Tous</option>
+                    <!-- Dynamiquement rempli avec les genres du JSON -->
+                    </select>
+                </div>
+
+                <div class="filter-column">
+                    <label for="status-select">Statut :</label>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="alive-checkbox" checked>
+                        <label for="alive-checkbox">Vivant</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="dead-checkbox" checked>
+                        <label for="dead-checkbox">Mort</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="results-count"></div>
+        </div>
+          
+        
     </body>
 
 
     <footer>
         <div class="footer">
-            Last update: 11/10/2023
+            Last update: 01/11/2023
         </div>    
     </footer>
 

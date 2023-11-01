@@ -6,12 +6,18 @@ margin: 20px 50px;
 height: 100%;
 }
 
-div#loc{
+div#loc,
+div#filters{
   border: black solid 1px;
   margin-top: 50px;
   border-radius: 15px;
   /* Cache ce qu'il dépasse de la border */
   overflow: hidden;
+}
+
+div#filters-content{
+  margin: 20px;
+  text-align: center;
 }
 
 .header {
@@ -134,4 +140,85 @@ border: black solid 1px;
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
   /* Ajouter de la transparence à la popup */
   /* background-color: rgba(255,255,255,0.5); */
+}
+
+
+
+/* Style du libellé des filtres */
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Style du conteneur du curseur d'âge */
+#age-slider-container {
+  width: 300px; /* Ajustez la largeur selon vos besoins */
+  margin: 0 auto; /* Pour centrer horizontalement */
+  text-align: center; /* Pour centrer le contenu à l'intérieur du conteneur */
+  margin-top: 10px; /* Réglez la marge supérieure selon vos préférences */
+}
+
+
+/* Style du curseur d'âge */
+#age-slider {
+  margin-top: 5px;
+}
+
+/* Style de la plage d'âge sélectionnée */
+#selected-age-range {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#genre-select{
+  margin-top: 10px;
+  text-align: center;  
+}
+
+/* Conteneur de colonnes pour les filtres */
+.filter-columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style de chaque colonne de filtre */
+.filter-column {
+  flex: 1;
+  margin: 0 10px; /* Ajustez la marge entre les colonnes selon vos préférences */
+}
+
+
+/* Style des cases à cocher */
+.checkbox-container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Style des cases à cocher réelles */
+input[type="checkbox"] {
+  display: none; /* Masque la case à cocher réelle */
+}
+
+/* Style du texte "Vivant" et "Mort" à côté des cases à cocher */
+label[for="alive-checkbox"], label[for="dead-checkbox"] {
+  display: inline-block;
+  padding: 10px 20px; /* Ajustez le rembourrage selon vos préférences */
+  background-color: gray; /* Couleur de fond par défaut */
+  color: white; /* Couleur du texte par défaut */
+  border-radius: 5px; /* Coins arrondis */
+  transition: background-color 0.3s; /* Animation de transition */
+}
+
+/* Style de la case à cocher cochée */
+input[type="checkbox"]:checked + label {
+  background-color: darkcyan; /* Fond bleu lorsque la case est cochée */
+}
+
+#results-count {
+  text-align: center;
+  background-color: lightcyan;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
 }

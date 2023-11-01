@@ -26,7 +26,7 @@ var layerPays = L.layerGroup();
 
 
 // Utilisation de l'API Fetch pour récupérer le fichier CSV
-resultCity = fetch(FileCities)
+var resultCity = fetch(FileCities)
     .then(response => response.text()) // Lire le contenu du fichier comme texte
     .then(data => {
         // Traitement du contenu du fichier CSV
@@ -56,7 +56,7 @@ resultCity = fetch(FileCities)
 
 
 // Utilisation de l'API Fetch pour récupérer le fichier CSV
-resultCountry = fetch(FileCountries)
+var resultCountry = fetch(FileCountries)
     .then(response => response.text()) // Lire le contenu du fichier comme texte
     .then(data => {
         // Traitement du contenu du fichier CSV
@@ -85,7 +85,7 @@ resultCountry = fetch(FileCountries)
 
 
 
-resultArtists = fetch(FileArtists)
+var resultArtists = fetch(FileArtists)
     .then(response => response.json())
     .then(data => {
         data = data.results.bindings;
@@ -127,15 +127,225 @@ resultArtists = fetch(FileArtists)
             var country = data[i].country.value;
 
             resultats.push([subject, name, birth, death, age, genres, city, country]);
+            // console.log(resultats[i]);
         }
         return resultats;
-    }
-    )
+    })
     .catch(error => console.error('Une erreur s\'est produite :', error));
 
 
-    
 
+var minAge = 150;
+var maxAge = 0;
+var genreCounts = {}; // Utilisez un objet pour compter les occurrences de chaque genre
+
+var ageSlider = document.getElementById("age-slider");
+var selectedAgeRange = document.getElementById("selected-age-range");
+var genreSelect = document.getElementById("genre-select");
+var aliveCheckbox = document.getElementById("alive-checkbox");
+var deadCheckbox = document.getElementById("dead-checkbox");
+
+
+resultArtists.then(function(result) {
+    result.forEach((artist) => {
+        if (artist[4] < minAge) {
+            minAge = artist[4];
+        }
+        if (artist[4] > maxAge) {
+            maxAge = artist[4];
+        }
+
+        const genres = artist[5].split(', ');
+        genres.forEach((genre) => {
+            genreCounts[genre] = (genreCounts[genre] || 0) + 1;
+        });
+    });
+
+    // Maintenant que les valeurs sont mises à jour, vous pouvez initialiser le curseur d'âge et le select de genre
+    const ageRange = [minAge, maxAge];
+
+    noUiSlider.create(ageSlider, {
+        start: ageRange,
+        connect: true,
+        step: 1,
+        range: {
+            'min': minAge,
+            'max': maxAge
+        }
+    });
+
+    ageSlider.noUiSlider.on('update', function (values, handle) {
+        const ageMin = parseInt(values[0]);
+        const ageMax = parseInt(values[1]);
+        selectedAgeRange.textContent = `Plage d'âge sélectionnée : ${ageMin} - ${ageMax} ans`;
+        // Lors de l'initialisation du curseur, applyFilters() était appelé 2 fois et provoquait un bug
+        if(ageMin != minAge || ageMax != maxAge){
+            getValuesAge(ageMin, ageMax);
+            applyFilters();
+        }
+    });
+
+    // Triez les genres par ordre alphabétique
+    const sortedGenres = Object.keys(genreCounts).sort();
+
+    sortedGenres.forEach((genre) => {
+        const option = document.createElement('option');
+        option.value = genre;
+        option.text = genre;
+        genreSelect.appendChild(option);
+    });
+});
+
+
+genreSelect.addEventListener("change", function () {
+    applyFilters();
+});
+
+aliveCheckbox.addEventListener("change", function () {
+    applyFilters();
+});
+
+deadCheckbox.addEventListener("change", function () {
+    applyFilters();
+});
+
+function getValuesAge(min, max) {
+    minAge = parseInt(min);
+    maxAge = parseInt(max);
+    // console.log(minAge + " " + maxAge);
+}
+
+var filteredCity;
+var filteredCountry;
+var filteredArtists;
+
+function applyFilters() {
+    // Récupérer les valeurs des filtres
+    const genre = genreSelect.value;
+    const alive = aliveCheckbox.checked;
+    const dead = deadCheckbox.checked;
+    // console.log(minAge + " " + maxAge + " " + genre + " " + alive + " " + dead);
+
+    // Si les filtres ont changé, mettez à jour les résultats filtrés
+
+    // Filtrer les artistes en fonction des valeurs des filtres
+    filteredArtists = resultArtists.then(function(result) {
+        return result.filter((artist) => {
+            return artist[4] >= minAge && artist[4] <= maxAge && (artist[5].includes(genre) || genre == "Tous") && ((artist[3] == "Alive" && alive) || (artist[3] != "Alive" && dead));
+        });
+    });
+
+    // Afficher le nombre de résultats dans le HTML
+    filteredArtists.then(function(result) {
+        document.getElementById("results-count").innerHTML = result.length + " artistes trouvés";
+    });
+
+
+    // Copie resultCity et resultCountry dans resultCityCopy et resultCountryCopy
+    var resultCityCopy = resultCity.then(function(result) {
+        return result.slice();
+    });
+    var resultCountryCopy = resultCountry.then(function(result) {
+        return result.slice();
+    });
+
+    // Modifier le nombre d'artiste dans les villes de resultCity en fonction des artistes filtrés dans filteredArtists
+    filteredCity = filteredArtists.then(function(result) {
+        return resultCityCopy.then(function(resultCityCopy) {
+            for (var i=0; i<resultCityCopy.length; i++) {
+                resultCityCopy[i][2] = 0;
+            }
+            cityMap = new Map();
+            for (var i=0; i<result.length; i++){
+                var key = result[i][6].toLowerCase() + result[i][7].toLowerCase();
+                if (cityMap.has(key)){
+                    cityMap.set(key, cityMap.get(key) + 1);
+                }
+                else{
+                    cityMap.set(key, 1);
+                }
+            }
+            for (var i=0; i<resultCityCopy.length; i++) {
+                var key = resultCityCopy[i][0].toLowerCase() + resultCityCopy[i][1].toLowerCase();
+                if (cityMap.has(key)){
+                    resultCityCopy[i][2] = cityMap.get(key);
+                }
+                else{
+                    resultCityCopy.splice(i, 1);
+                    i--;
+                }
+            }
+
+            // On trie le tableau par nombre d'artistes
+            resultCityCopy.sort(function(a, b) {
+                return b[2] - a[2];
+            });
+
+            return resultCityCopy;
+        });
+    });
+
+    // Modifier le nombre d'artiste dans les pays de resultCountry en fonction des artistes filtrés dans filteredArtists
+    filteredCountry = filteredArtists.then(function(result) {
+        return resultCountryCopy.then(function(resultCountryCopy) {
+            for (var i=0; i<resultCountryCopy.length; i++) {
+                resultCountryCopy[i][1] = 0;
+            }
+            countryMap = new Map();
+            for (var i=0; i<result.length; i++){
+                var key = result[i][7].toLowerCase();
+                if (countryMap.has(key)){
+                    countryMap.set(key, countryMap.get(key) + 1);
+                }
+                else{
+                    countryMap.set(key, 1);
+                }
+            }
+            for (var i=0; i<resultCountryCopy.length; i++) {
+                var key = resultCountryCopy[i][0].toLowerCase();
+                if (countryMap.has(key)){
+                    resultCountryCopy[i][1] = countryMap.get(key);
+                }
+                else{
+                    resultCountryCopy.splice(i, 1);
+                    i--;
+                }
+            }
+
+            // On trie le tableau par nombre d'artistes
+            resultCountryCopy.sort(function(a, b) {
+                return b[1] - a[1];
+            });
+
+            return resultCountryCopy;
+        });
+    });
+
+    // filteredCity.then(function(result) {
+    //     console.log(result);
+    // });
+
+    // filteredCountry.then(function(result) {
+    //     console.log(result);
+    // });
+
+    displayFilters();
+}
+
+
+// Fonction pour afficher les villes filtrées sur la carte
+function displayFilters() {
+    map.removeLayer(layerVille);
+    map.removeLayer(layerPays);
+
+    layerPays = L.layerGroup();
+    createLayerCountries();
+
+    layerVille = L.layerGroup();
+    createLayerCities();
+
+    toggleLayers();
+}
 
 
 // Met toutes les premières lettres en majuscule d'une chaîne de caractères
@@ -146,7 +356,7 @@ function strUcFirst(a) {
 
 listeArtistePays = function(pays) {
     return new Promise(function(resolve, reject) {
-        resultCity.then(function(result) {
+        filteredCity.then(function(result) {
             var tableauVilles = '<table class="centered-table">'; // Créez une variable pour stocker la liste des villes
             var villeCount = 0; // Compteur pour suivre le nombre de villes ajoutés
             var resultArray = [];
@@ -196,7 +406,7 @@ listeArtistePays = function(pays) {
 
 function listeArtisteVille(ville, pays, artists) {
     return new Promise(function(resolve, reject) {
-        resultArtists.then(function(result) {
+        filteredArtists.then(function(result) {
             var artistList = '<div class="artist-columns"><div class="artist-column1">'; // Créez une variable pour stocker la liste d'artistes
             var artistCount = 0; // Compteur pour suivre le nombre d'artistes ajoutés
 
@@ -269,7 +479,7 @@ function addMarkerCountry(pays, nbArtists, latitude, longitude) {
 
 // Afficher les pays sur la carte dans une fonction
 function createLayerCountries() {
-    resultCountry.then(function(result) {
+    filteredCountry.then(function(result) {
         for (var i=0; i<result.length; i++) {
             addMarkerCountry(result[i][0], result[i][1], result[i][2], result[i][3]);
         }
@@ -278,7 +488,7 @@ function createLayerCountries() {
 
 // Affichez les villes sur la carte dans une fonction
 function createLayerCities() {
-    resultCity.then(function(result) {
+    filteredCity.then(function(result) {
         for (var i=0; i<result.length; i++) {
             addMarkerCity(result[i][0], result[i][1], result[i][2], result[i][3], result[i][4]);
         }
@@ -348,14 +558,14 @@ document.addEventListener('click', function (e) {
 
 // Fonction pour afficher les villes ou les pays en fonction du niveau de zoom
 function toggleLayers() {
-    console.log('Niveau de zoom : ' + map.getZoom());
+    // console.log('Niveau de zoom : ' + map.getZoom());
     if (map.getZoom() > 6) {
         // Niveau de zoom inférieur à 8 : Afficher les villes, masquer les pays
         if (map.hasLayer(layerPays)) {
             map.removeLayer(layerPays);
         }
         if (!map.hasLayer(layerVille)) {
-            layerVille.addTo(map);
+            map.addLayer(layerVille);
         }
     } else {
         // Niveau de zoom supérieur ou égal à 8 : Afficher les pays, masquer les villes
@@ -368,16 +578,9 @@ function toggleLayers() {
     }
 }
 
-createLayerCities();
-createLayerCountries();
 
-// Appelez la fonction initialement pour afficher les couches en fonction du niveau de zoom initial
-toggleLayers();
-
-
-
-
-
-
-
+// Appelé applyFilters() lorsque la page est chargée
+document.addEventListener('DOMContentLoaded', function() {
+    applyFilters();
+});
 
