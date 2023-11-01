@@ -19,14 +19,14 @@ https://observablehq.com/@d3/grouped-bar-chart/2?intent=fork
 
 Visualisation : 
     - Visualation des genres dés équipements ✅
-    - Visualiser l'équipement le plus populaire par genre
-    - Visualisation de chaque équipement par genre
-    - Visualisation détaille d'un équipement
+    - Visualiser l'équipement le plus populaire par genre  ✅
+    - Visualisation de chaque équipement par genre ✅
+    - Visualisation détaille d'un équipement ✅
 
 
-    - Visualisé l'équipement utilisé par un artiste ? 
+    - Visualisé l'équipement utilisé par un artiste ?  ✅
+    
     - Visualiser les équipements par genre par rapport aux artistes et son équipement le plus connu ?
-
     - Visualiser les artistes qui utilisent l'équipement sélectionne ?
     - Visualiser l'artiste le plus connu utilisant cette équipement
 
@@ -38,7 +38,23 @@ Filtres :
 
 Click : 
     - Cliqué sur une partie d'un donut ✅
-    - Cliqué sur un équipement
+    - Cliqué sur un équipement ✅
+
+---
+HERE HERE HERE 01/11/2023
+Pour la suite faire en recherche de genre ou d'artiste
+Visualsier mieux le bordel
+
+Scrapé l'image de l'instruement ?
+visualisé détails de fou de l'instrument
+
+
+Récupérer en scrapant tous les équipements de chaque artiste en ordre.
+Afficher tous les instruments d'un artiste recherché
+Afficher l'instrument offi d'un artiste par rapport au groupe recherché.
+
+----
+
 
 
 All artists fields

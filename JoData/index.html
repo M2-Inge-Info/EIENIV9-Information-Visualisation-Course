@@ -1,69 +1,98 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualisation des genres</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    
-    <style>
-        .body {
-            background-color: #E0F7FA;
-        }
-        #title-container {
-            background-image: url('http://www.turing.ac.uk/sites/default/files/2019-04/integrating_information_visualisation.jpg');
-            background-size: cover;
-            background-position: center;
-            border: 1px solid #ddd; /* Optional border */
-            border-radius: 8px; /* Optional border radius for rounded corners */
-            color: rgb(41, 99, 19);
-        }
-        #chart-section {
-            background-color: #FFF5E1 ;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-        }
-        #legend {
-            max-width: 50%;
-        }
-        #chart {
-            max-width: 50%;
-        }
-    </style>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radial Bar Chart</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;  /* Couleur de fond claire */
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background: url('your-image-url.jpg') no-repeat center center gainsboro;
+      background-size: cover;
+      color: white;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+    .footer {
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      width: 100%;
+    }
+    #threshold-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .section-title {
+      text-align: center;
+      margin: 20px 0;
+      color: #007bff;
+    }
+    .card {
+      margin-bottom: 20px;
+      padding: 20px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      flex-grow: 1;
+    }
+  </style>
 </head>
-<body class="body">
+<body>
+  <div class="header">
+    <h1>EIENIV9 - Projet Information Visualisation</h1>
+  </div>
 
-    <div id="title-container" class="text-center py-5">
-        <h1>Visualisation des genres d'équipement</h1>
-        <p>Scraping, Traitement, Visualisation</p>
-    </div>
-    
-
-    
-    <div id="chart-section" class="container my-4">
-        <div id="slider-section" class="container text-center my-4">
-            <input type="range" class="form-range" min="10" max="100" value="10" id="percentageSlider" style="width: 50%;">
-            <span id="percentageValue">10%</span>
-        </div>
-        <div id="chart-paper" class="d-flex justify-content-around align-items-center p-4">
-            <div id="chart"></div>
-            <div id="legend"></div>
-        </div>
+  <div class="container mt-4">
+    <div id="threshold-container">
+      <label for="threshold">Seuil: </label>
+      <input type="range" id="threshold" name="threshold" min="0" max="100" step="1" value="10">
+      <span id="threshold-value">10</span>
     </div>
 
-    <div id="equipement-details" class="container my-4">
-        <h2>Équipements Plus</h2>
-        <!-- Vous pouvez utiliser une visualisation D3.js ici. -->
+    <!-- Radial Stacked Bar -->
+    <div class="card">
+      <h2 class="section-title"> Catégories des equipements (Radial Stacked Bar)</h2>
+      <div id="radial-bar-container"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="scripts/visualisation.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <!-- Pie Chart -->
+    <div class="card">
+      <h2 class="section-title">Instruments d'une catégorie (Pie Chart)</h2>
+      <div id="pie-chart-container"></div>
+    </div>
+  </div>
+
+    <div class="container mt-4">
+        <h2>Liste des Artistes</h2>
+        <div id="artist-list" class="row"></div>
+    </div>
+
+
+  <div class="footer">
+    <p>© 2023 Radial Bar Chart. Tous droits réservés.</p>
+  </div>
+
+  <script src="scripts/showArtists.js"></script>
+  <script src="scripts/createPieChart.js"></script>
+  <script src="scripts/getCategoryData.js"></script>
+  <script src="scripts/createRadialChart.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap
