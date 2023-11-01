@@ -220,6 +220,8 @@ var filteredCountry;
 var filteredArtists;
 
 function applyFilters() {
+    map.closePopup();
+
     // Récupérer les valeurs des filtres
     const genre = genreSelect.value;
     const alive = aliveCheckbox.checked;
@@ -257,7 +259,7 @@ function applyFilters() {
             }
             cityMap = new Map();
             for (var i=0; i<result.length; i++){
-                var key = result[i][6].toLowerCase() + result[i][7].toLowerCase();
+                var key = strUcFirst(result[i][6]) + strUcFirst(result[i][7]);
                 if (cityMap.has(key)){
                     cityMap.set(key, cityMap.get(key) + 1);
                 }
@@ -266,7 +268,7 @@ function applyFilters() {
                 }
             }
             for (var i=0; i<resultCityCopy.length; i++) {
-                var key = resultCityCopy[i][0].toLowerCase() + resultCityCopy[i][1].toLowerCase();
+                var key = strUcFirst(resultCityCopy[i][0]) + strUcFirst(resultCityCopy[i][1]);
                 if (cityMap.has(key)){
                     resultCityCopy[i][2] = cityMap.get(key);
                 }
@@ -293,7 +295,7 @@ function applyFilters() {
             }
             countryMap = new Map();
             for (var i=0; i<result.length; i++){
-                var key = result[i][7].toLowerCase();
+                var key = strUcFirst(result[i][7]);
                 if (countryMap.has(key)){
                     countryMap.set(key, countryMap.get(key) + 1);
                 }
@@ -302,7 +304,7 @@ function applyFilters() {
                 }
             }
             for (var i=0; i<resultCountryCopy.length; i++) {
-                var key = resultCountryCopy[i][0].toLowerCase();
+                var key = strUcFirst(resultCountryCopy[i][0]);
                 if (countryMap.has(key)){
                     resultCountryCopy[i][1] = countryMap.get(key);
                 }
@@ -348,6 +350,118 @@ function displayFilters() {
 }
 
 
+
+var artistSearchInput = document.getElementById("artist-search");
+
+artistSearchInput.addEventListener("focus", function() {
+    // Lorsque la barre de recherche est sélectionnée, supprimez le placeholder
+    artistSearchInput.removeAttribute("placeholder");
+});
+
+artistSearchInput.addEventListener("blur", function() {
+    // Lorsque la barre de recherche perd le focus et est vide, rétablissez le placeholder
+    if (artistSearchInput.value.trim() === "") {
+        artistSearchInput.setAttribute("placeholder", "Saisir un artiste (Prénom Nom)");
+    }
+});
+
+
+function setupArtistSearch() {
+    var artistSearchInput = document.getElementById("artist-search");
+    var artistSuggestionsDatalist = document.getElementById("artist-suggestions");
+    var searchButton = document.getElementById("search-button");
+  
+    artistSearchInput.addEventListener("input", function() {
+        var artistSearchResults = document.getElementById("artist-search-results");
+        artistSearchResults.innerHTML = '';
+
+        // Obtenez le texte entré dans la barre de recherche
+        var searchQuery = strUcFirst(artistSearchInput.value.trim());
+    
+        // Effacez les anciennes suggestions
+        artistSuggestionsDatalist.innerHTML = '';
+    
+        // Parcourez les données des artistes pour trouver des correspondances
+        filteredArtists.then(function(artist) {
+            for(i=0; i<artist.length; i++) {
+                var artistName = strUcFirst(artist[i][1]); // Utilisez l'index 1 pour le nom de l'artiste
+                console.log(artistName);
+                if (artistName.includes(searchQuery)) {
+                    // Créez une nouvelle option pour la datalist avec la suggestion d'artiste
+                    var suggestionOption = document.createElement("option");
+                    suggestionOption.text = artistName;
+                    suggestionOption.value = artistName;
+                    suggestionOption.classList.add("suggestion");
+                    artistSuggestionsDatalist.appendChild(suggestionOption);
+                    // console.log(artist[i]);
+                }
+            }
+        });
+    });
+  
+    // Ajoutez un gestionnaire d'événements pour effectuer la recherche lorsque l'utilisateur appuie sur "Entrée"
+    artistSearchInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            performArtistSearch(artistSearchInput.value);
+        }
+    });
+
+    // Ajoutez un gestionnaire d'événements pour effectuer la recherche lorsque le bouton est cliqué
+    searchButton.addEventListener("click", function() {
+        var query = artistSearchInput.value.trim();
+        performArtistSearch(query);
+    });
+}
+
+
+function performArtistSearch(query) {
+    // Filtrer les artistes en fonction du nom de l'artiste (index 1 dans les données)
+    var results = filteredArtists.then(function(artist) {
+        // Retourne les résultats de la promesse
+        return artist.filter(function(artist) {
+            return strUcFirst(artist[1]) === strUcFirst(query);
+        });
+    });
+
+    // results.then(function(result) {
+    //     console.log(result.length);
+    // });
+    
+    results.then(function(result) {
+        if (result.length < 1) {
+            // Si aucun résultat n'est trouvé, affichez un message d'erreur
+            var artistSearchResults = document.getElementById("artist-search-results");
+            artistSearchResults.innerHTML = '<p class="error">Aucun artiste trouvé</p>';
+        }
+        else if (result.length > 1) {
+            // Si plusieurs résultats sont trouvés, affichez un message d'erreur
+            var artistSearchResults = document.getElementById("artist-search-results");
+            artistSearchResults.innerHTML = '<p class="error">' + result.length + ' artistes trouvés</p>';
+        } else {
+            // Affichez les résultats
+            var artistSearchResults = document.getElementById("artist-search-results");
+            artistSearchResults.innerHTML = '<p class="success">1 artiste trouvé, consulter la carte</p>';
+
+            // Remplacer le contenu de la barre de recherche par le nom de l'artiste trouvé
+            var artistSearchInput = document.getElementById("artist-search");
+            artistSearchInput.value = result[0][1];
+
+            var artistCity = result[0][6];
+            var artistCountry = result[0][7];
+            // console.log(artistCity + ', ' + artistCountry);
+            zoomOnCity(artistCity, artistCountry);
+        }
+    });
+
+    // Cacher les suggestions
+    var artistSuggestionsDatalist = document.getElementById("artist-suggestions");
+    artistSuggestionsDatalist.innerHTML = '';
+}
+  
+  
+
+
+
 // Met toutes les premières lettres en majuscule d'une chaîne de caractères
 function strUcFirst(a) {
     return (a+'').replace(/^(.)|\s(.)/g, function($1) { return $1.toUpperCase(); });
@@ -364,7 +478,7 @@ listeArtistePays = function(pays) {
 
             // Récupérer la liste de ville présente dans le pays
             for (var i = 0; i < result.length; i++) {
-                if (result[i][1].toLowerCase() === pays) {
+                if (strUcFirst(result[i][1]) === strUcFirst(pays)) {
                     resultArray.push(result[i]);
                 }
             }
@@ -416,7 +530,7 @@ function listeArtisteVille(ville, pays, artists) {
             }
 
             for (var i = 0; i < result.length; i++) {
-                if (result[i][6].toLowerCase() === ville && result[i][7].toLowerCase() === pays) {
+                if (strUcFirst(result[i][6]) === strUcFirst(ville) && strUcFirst(result[i][7]) === strUcFirst(pays)) {
                     artistList += '<a href="' + result[i][0] + '">' + result[i][1] + '</a></br>';
                     artistCount++;
 
@@ -446,6 +560,8 @@ function addMarkerCity(ville, pays, nbArtists, latitude, longitude) {
         fillColor: 'red', // Couleur de remplissage du cercle
         fillOpacity: 0.15, // Opacité de remplissage (1 pour totalement opaque)
         weight: 1.5,
+        ville: ville,
+        pays: pays,
     }).addEventListener('mouseover', function() {
         map.closePopup();
         var self = this; // Stockez une référence à "this"
@@ -464,6 +580,7 @@ function addMarkerCountry(pays, nbArtists, latitude, longitude) {
         fillColor: 'red', // Couleur de remplissage du cercle
         fillOpacity: 0.25, // Opacité de remplissage (1 pour totalement opaque)
         weight: 1.5,
+        pays: pays,
     }).addEventListener('mouseover', function() {
         map.closePopup();
         var self = this; // Stockez une référence à "this"
@@ -495,40 +612,59 @@ function createLayerCities() {
     });
 }
 
-
-
 // Fonction pour zoomer sur la ville première ville de la liste d'un pays
 function zoomMostArtists(pays) {
-    resultCity.then(function(result) {
+    filteredCity.then(function(result) {
         i=0;
-        while (result[i][1].toLowerCase() != pays.toLowerCase()) {
+        while (strUcFirst(result[i][1]) != strUcFirst(pays)) {
             i++;
         }
         map.setView([result[i][3], result[i][4]], 10);
+        // open popup de la ville sélectionnée (ville = result[i][0], pays = result[i][1])
+        listeArtisteVille(result[i][0], result[i][1], result[i][2]).then(function(artistList) {
+            L.popup({closeOnClick: false})
+                .setLatLng([result[i][3], result[i][4]])
+                .setContent('<h3 class="popup">' + strUcFirst(result[i][0]) + ', <button class="pays-button">' + strUcFirst(pays) + '</button></h3><h5>' + result[i][2] + ' artistes</h5>' + artistList)
+                .openOn(map);
+        });
     });
 }
 
 
 // Fonction pour zoomer sur une ville
 function zoomOnCity(ville, pays) {
-    resultCity.then(function(result) {
+    filteredCity.then(function(result) {
         i=0;
-        while (result[i][0].toLowerCase() != ville.toLowerCase() || result[i][1].toLowerCase() != pays.toLowerCase()) {
+        while (strUcFirst(result[i][0]) != strUcFirst(ville) || strUcFirst(result[i][1]) != strUcFirst(pays)) {
             i++;
         }
         map.setView([result[i][3], result[i][4]], 10);
+        // open popup de la ville sélectionnée (ville = result[i][0], pays = result[i][1])
+        listeArtisteVille(result[i][0], result[i][1], result[i][2]).then(function(artistList) {
+            L.popup({closeOnClick: false})
+                .setLatLng([result[i][3], result[i][4]])
+                .setContent('<h3 class="popup">' + strUcFirst(ville) + ', <button class="pays-button">' + strUcFirst(pays) + '</button></h3><h5>' + result[i][2] + ' artistes</h5>' + artistList)
+                .openOn(map);
+        });
     });
 }
 
 
 // Fonction pour zoomer sur un pays
 function zoomOnPays(pays) {
-    resultCountry.then(function(result) {
+    filteredCountry.then(function(result) {
         i=0;
-        while (result[i][0].toLowerCase() != pays.toLowerCase()) {
+        while (strUcFirst(result[i][0]) != strUcFirst(pays)) {
             i++;
         }
         map.setView([result[i][2], result[i][3]], 5);
+        // open popup du pays sélectionné (pays = result[i][0])
+        listeArtistePays(result[i][0]).then(function(resultObject) {
+            L.popup({closeOnClick: false})
+                .setLatLng([result[i][2], result[i][3]])
+                .setContent('<h3 class="popup">' + strUcFirst(pays) + '</h3><h5>' + resultObject.nbVilles + ' villes, ' + result[i][1] + ' artistes</h5>' + resultObject.tableau)
+                .openOn(map);
+        });
     });
 }
 
@@ -582,5 +718,6 @@ function toggleLayers() {
 // Appelé applyFilters() lorsque la page est chargée
 document.addEventListener('DOMContentLoaded', function() {
     applyFilters();
+    setupArtistSearch();
 });
 

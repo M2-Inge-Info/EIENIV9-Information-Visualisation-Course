@@ -144,6 +144,53 @@ border: black solid 1px;
 
 
 
+#search-artist-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.search-label {
+  display: block;
+  font-weight: bold;
+}
+
+#artist-search {
+  width: 500px;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+  text-align: center; /* Centrer le texte dans la zone de recherche */
+}
+
+#artist-suggestions {
+  display: none;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#search-button {
+  padding: 5px 15px;
+  height: 50px;
+  background-color: darkcyan; /* Couleur du bouton */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+#search-button:hover {
+  background-color: #0056b3;
+}
+
+
+
 /* Style du libellé des filtres */
 label {
   font-weight: bold;
@@ -168,7 +215,7 @@ label {
 /* Style de la plage d'âge sélectionnée */
 #selected-age-range {
   margin-top: 10px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 #genre-select{
