@@ -330,7 +330,7 @@ function applyFilters() {
     // filteredCountry.then(function(result) {
     //     console.log(result);
     // });
-
+    
     displayFilters();
 }
 
@@ -377,7 +377,7 @@ function setupArtistSearch() {
 
         // Obtenez le texte entré dans la barre de recherche
         var searchQuery = strUcFirst(artistSearchInput.value.trim());
-    
+        
         // Effacez les anciennes suggestions
         artistSuggestionsDatalist.innerHTML = '';
     
@@ -386,7 +386,14 @@ function setupArtistSearch() {
             for(i=0; i<artist.length; i++) {
                 var artistName = strUcFirst(artist[i][1]); // Utilisez l'index 1 pour le nom de l'artiste
                 // console.log(artistName);
-                if (artistName.includes(searchQuery)) {
+                if (searchQuery === "") {
+                    // Si la barre de recherche est vide, ne montrez aucune suggestion
+                    var suggestionOption = document.createElement("option");
+                    suggestionOption.text = artistName;
+                    suggestionOption.value = artistName;
+                    suggestionOption.classList.add("suggestion");
+                    artistSuggestionsDatalist.appendChild(suggestionOption);
+                } else if (artistName.includes(searchQuery)) {
                     // Créez une nouvelle option pour la datalist avec la suggestion d'artiste
                     var suggestionOption = document.createElement("option");
                     suggestionOption.text = artistName;
