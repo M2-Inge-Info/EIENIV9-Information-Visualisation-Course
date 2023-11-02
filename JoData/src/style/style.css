@@ -1,0 +1,60 @@
+body {
+    background-color: #f8f9fa;  /* Couleur de fond claire */
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    background: url('your-image-url.jpg') no-repeat center center gainsboro;
+    background-size: cover;
+    color: white;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+  .footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+  }
+  #threshold-container {
+    margin: 20px 0;
+    text-align: center;
+  }
+  .section-title {
+    text-align: center;
+    margin: 20px 0;
+    color: #007bff;
+  }
+  .card {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .container {
+    flex-grow: 1;
+  }
+
+
+  .artist {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  .artist:hover {
+    background-color: #f0f0f0;
+  }
+  .equipment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+  }

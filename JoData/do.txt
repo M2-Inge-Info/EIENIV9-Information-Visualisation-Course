@@ -42,17 +42,29 @@ Click :
 
 ---
 HERE HERE HERE 01/11/2023
-Pour la suite faire en recherche de genre ou d'artiste
-Visualsier mieux le bordel
+Pour la suite faire en recherche de genre ou d'artiste ✅
+Visualsier mieux le bordel ✅
 
-Scrapé l'image de l'instruement ?
-visualisé détails de fou de l'instrument
+Scrapé l'image de l'instruement ? ✅
+visualisé détails de fou de l'instrument ✅
 
 
-Récupérer en scrapant tous les équipements de chaque artiste en ordre.
-Afficher tous les instruments d'un artiste recherché
+Récupérer en scrapant tous les équipements de chaque artiste en ordre. ✅
+Afficher tous les instruments d'un artiste recherché ✅
 Afficher l'instrument offi d'un artiste par rapport au groupe recherché.
 
+
+Je veux récupérer tous les artistes et leurs informations et leurs équipements page - data_artist.json ✅
+
+
+Grâce a l'équipement page, je vais scrapé le premier instruement (le favori) pour chaque artiste - ✅
+Grâce a l'équipement page, je vais scrapé tous les instrument pour chaque artiste ✅
+
+Visualiser la base : Catégorie des équipements --> Tous les équipements de la catégorie --> Visu des artistes utilisants l'équipement  ✅
+
+Visualiser en rechercher : Rechercher -> Artiste -> Les équipements utilisés ✅
+
+Visualiser en PIE par genre d'artiste et par catégorie d'équipement à la suite ✅
 ----
 
 

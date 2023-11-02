@@ -8,7 +8,7 @@ function createPieChart(data, category) {
     const color = d3.scaleOrdinal()
         .domain(data.map(d => d.name))
         .range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), data.length).reverse());
-    const pie = d3.pie().sort(null).value(d => d.value);
+    const pie = d3.pie().sort(null).value(d => d.count);
     const arc = d3.arc().innerRadius(0).outerRadius(Math.min(width, height) / 2 - 1);
     const arcLabel = d3.arc().innerRadius(arc.outerRadius()() * 0.8).outerRadius(arc.outerRadius()() * 0.8);
     const arcs = pie(data);
@@ -28,13 +28,13 @@ function createPieChart(data, category) {
         .attr("fill", d => color(d.data.name))
         .attr("d", arc)
         .append("title")
-        .text(d => `${d.data.name}: ${d.data.value.toLocaleString("en-US")}`);
+        .text(d => `${d.data.name}: ${d.data.count.toLocaleString("en-US")}`);
 
     // Ajoutez un écouteur d'événements de clic aux segments
     svg.selectAll("path")
         .on("click", function(event, d) {
             console.log(d.data)
-            console.log(`Segment cliqué: ${d.data.name} avec une valeur de ${d.data.value}`);
+            console.log(`Segment cliqué: ${d.data.name} avec une valeur de ${d.data.count}`);
             showArtistsUsingInstrument(category, d.data.name);
         });
 
@@ -52,7 +52,10 @@ function createPieChart(data, category) {
             .attr("x", 0)
             .attr("y", "0.7em")
             .attr("fill-opacity", 0.7)
-            .text(d => d.data.value.toLocaleString("en-US")));
+            .text(d => d.data.count.toLocaleString("en-US")));
+
+
+            
 
     return svg.node();
 }
