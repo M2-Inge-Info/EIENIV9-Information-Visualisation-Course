@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Visualisation</title>
+    <!-- Inclusion de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Style personnalisé */
+        header {
+            padding: 20px 0;
+            text-align: center;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .members-list {
+            font-weight: bold;
+            text-align: center;
+            list-style: none;
+            padding: 0;
+        }
+        .members-list li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .paper {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .member {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .member img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <div class="container flex-grow-1">
+        <!-- En-tête -->
+        <header class="my-4">
+            <h1>Information Visualisation</h1>
+        </header>
+
+        <!-- Membres -->
+        <section class="mb-4">
+            <div class="row">
+                <div class="col-md-3 member">
+                    <img src="whalter_white.png" alt="Logo 1">
+                    <p>BLOUCLIER Lucas</p>
+                </div>
+                <div class="col-md-3 member">
+                    <img src="whalter_white.png" alt="Logo 2">
+                    <p>DI MARTINO Jonathan</p>
+                </div>
+                <div class="col-md-3 member">
+                    <img src="whalter_white.png" alt="Logo 3">
+                    <p>MEROUE Guillaume</p>
+                </div>
+                <div class="col-md-3 member">
+                    <img src="whalter_white.png" alt="Logo 4">
+                    <p>SCORDO Quentin</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section des liens -->
+        <section class="mb-4 paper">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <a href="page1.html" class="btn btn-primary btn-block">Visualisation 1</a>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <a href="page2.html" class="btn btn-success btn-block">Visualisation 2</a>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <a href="page3.html" class="btn btn-warning btn-block">Visualisation 3</a>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <a href="page4.html" class="btn btn-danger btn-block">Visualisation 4</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>&copy; 2023 Walter White. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
