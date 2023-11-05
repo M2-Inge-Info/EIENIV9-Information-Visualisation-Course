@@ -3,18 +3,18 @@ from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import Namespace
 import json
 
-# Définissez l'URL du point de terminaison SPARQL
+# URL de la terminaison SPARQL
 sparql_endpoint = "http://wasabi.inria.fr/sparql"
 
-# Créez une instance de SPARQLWrapper
+# Création de l'instance de SPARQLWrapper
 sparql = SPARQLWrapper(sparql_endpoint)
 
-# Définissez les Namespace
+# Les namespaces
 foaf = Namespace("http://xmlns.com/foaf/0.1/")
 schema = Namespace("http://schema.org/")
 wsb = Namespace("http://ns.inria.fr/wasabi/ontology/")
 
-# Utilisez les préfixes dans votre requête SPARQL
+#  Les préfixes dans la requête SPARQL
 query = """
 PREFIX wsb: <http://ns.inria.fr/wasabi/ontology/> 
 PREFIX mo: <http://purl.org/ontology/mo/> 
@@ -51,17 +51,17 @@ ORDER BY ?subject
 """
 
 
-# Définissez le format de réponse JSON
+# Format de réponse JSON
 sparql.setReturnFormat(JSON)
 
-# Exécutez la requête SPARQL
+# Exécution de la requête SPARQL
 sparql.setQuery(query)
 results = sparql.query().convert()
 
 
-# Enregistrez le résultat au format JSON
+# Résultat au format JSON
 output_file = 'src\data\quentin_data.json'
-# Écrivez la liste d'artistes au format JSON dans le fichier de sortie
+# Liste d'artistes au format JSON en output
 with open(output_file, "w", encoding="utf-8") as json_file:
     json.dump(results, json_file, ensure_ascii=False, indent=4)
 
