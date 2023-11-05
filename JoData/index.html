@@ -16,9 +16,9 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-nav">
-      <a class="nav-item nav-link mr-3" href="#" id="nav-container1">Container 1</a>
-      <a class="nav-item nav-link mr-3" href="#" id="nav-container2">Container 2</a>
-      <a class="nav-item nav-link" href="#" id="nav-container3">Container 3</a>
+      <a class="nav-item nav-link mr-3" href="#" id="nav-container1">Visualisation par genre d'équipement</a>
+      <a class="nav-item nav-link mr-3" href="#" id="nav-container2">Recherche d'artiste ou d'équipement</a>
+      <a class="nav-item nav-link" href="#" id="nav-container3">Filtrage</a>
     </div>
   </nav>
   
@@ -40,39 +40,66 @@
     </div>
     
 
-    <!-- Pie Chart -->
-    <div class="card">
-      <h2 class="section-title">Instruments d'une catégorie (Pie Chart)</h2>
-      <div id="pie-chart-container"></div>
+  <!-- Pie Chart -->
+  <div class="card">
+    <h2 class="section-title">Instruments d'une catégorie (Pie Chart)</h2>
+    <div class="mb-3">
+        <label for="percentageFilter" class="form-label">Filtrer par pourcentage :</label>
+        <input type="range" class="form-range" id="percentageFilter" min="0" max="100" step="1" value="20">
+        <span id="percentageValue">20%</span>
     </div>
+    <div id="pie-chart-container" style="width: 100%; max-width: 928px; height: auto;"></div>
+  </div>
 
     <div class="container mt-4">
       <h2>Liste des Artistes</h2>
       <div id="artist-list" class="row"></div>
-      <div id="artistInfo"></div>
+
+      <div id="artistDetails"></div>
       <div id="favoriteEquipment"></div>
-      <div id="otherEquipment"></div>
+      <div id="otherEquipment" class="row"></div>
     </div>
 
   </div>
 
   <!-- Container 2 -->
   <div class="container mt-4" id="container2">
-    <input type="text" id="searchInput" placeholder="Nom de l'artiste" oninput="searchAndDisplayArtists()">
+    <div class="form-group">
+      <label for="searchInput">Recherche d'artiste</label>
+      <input type="text" class="form-control" id="searchInput" placeholder="Nom de l'artiste" oninput="searchAndDisplayArtists()" style="width:100%;">
+    </div>
     <div id="artistList" class="row"></div>
-    <div id="artistDetails"></div>
+    <div id="artistDetailsSearch"></div>
     <div id="pie-chart-container"></div>
   </div>
+  
 
   <!-- Container 3 -->
-  <div class="container mt-4" id="container3" style="display:none;">
-    <div id="donut-chart"></div>
-    <div id="equipment-list" class="equipment-list"></div>
+  <div class="container mt-4" id="container3">
+      <div class="row mt-4">
+        <div class="col-md-4">
+            <label for="genderFilter">Filtre de genre</label>
+            <select id="genderFilter" class="form-control">
+                <option value="">Tous</option>
+                <option value="Male">Homme</option>
+                <option value="Female">Femme</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="yearFilter">Filtre d'année de début</label>
+            <input type="number" id="yearFilter" class="form-control" placeholder="Tous">
+        </div>
+    </div>
+
+        <div id="donut-chart"></div>
+        <div id="equipment-list" class="equipment-list"></div>
   </div>
 
   <div class="footer">
     <p>© 2023 Radial Bar Chart. Tous droits réservés.</p>
   </div>
+
+  <script src="scripts/fetch_data.js"></script>
 
   <script src="scripts/showArtists.js"></script>
   <script src="scripts/createPieChart.js"></script>
@@ -80,6 +107,8 @@
   <script src="scripts/createRadialChart.js"></script>
 
   <script src="scripts/search/search.js"></script>
+  <script src="scripts/fetchFilterAnalysePie.js"></script>
+
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -2,23 +2,38 @@
 
 
 // Fonction pour créer une Pie Chart
-function createPieChart(data, category) {
+function createPieChart(data, category, percentage) {
+    const threshold = percentage / 100;
+
+    // Triez les données en ordre décroissant
+    const sortedData = data.sort((a, b) => b.count - a.count);
+    let cumulativePercent = 0;
+    
+    // Filtrer les données pour ne conserver que celles qui cumulent à 20% du total
+    const filteredData = sortedData.filter(d => {
+        const currentPercent = d.count / sortedData.reduce((acc, datum) => acc + datum.count, 0);
+        cumulativePercent += currentPercent;
+        return cumulativePercent <= threshold;
+    });
+
     const width = 928;
     const height = Math.min(width, 500);
     const color = d3.scaleOrdinal()
         .domain(data.map(d => d.name))
         .range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), data.length).reverse());
-    const pie = d3.pie().sort(null).value(d => d.count);
-    const arc = d3.arc().innerRadius(0).outerRadius(Math.min(width, height) / 2 - 1);
+        
+        const pie = d3.pie().sort(null).value(d => d.count);
+        const arc = d3.arc().innerRadius(0).outerRadius(Math.min(width, height) / 2 - 1);
+
     const arcLabel = d3.arc().innerRadius(arc.outerRadius()() * 0.8).outerRadius(arc.outerRadius()() * 0.8);
-    const arcs = pie(data);
+    const arcs = pie(filteredData);  // Utilisez filteredData au lieu de data
 
     const svg = d3.create("svg")
-        .attr("id", `pie-chart-${category}`)  // Ajoutez cette ligne
-        .attr("width", width)
-        .attr("height", height)
-        .attr("viewBox", [-width / 2, -height / 2, width, height])
-        .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;");
+    .attr("id", `pie-chart-${category}`)
+    .attr("viewBox", [-width / 2, -height / 2, width, height])
+    .style("width", "100%")   // Largeur à 100%
+    .style("height", "auto")  // Hauteur à auto
+    .style("font", "10px sans-serif");
 
         svg.append("g")
         .attr("stroke", "white")

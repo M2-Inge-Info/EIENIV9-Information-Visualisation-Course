@@ -1,3 +1,14 @@
+"""
+Nom du fichier : scraper_all_equipements.py
+Auteur : Jonathan
+Licence : Walter White
+Description : Ce script récupère des informations sur l'équipement utilisé par les artistes depuis leurs pages dédiées
+sur un site web. Il utilise une requête SPARQL pour obtenir les URLs des pages des artistes, puis il extrait les données
+concernant leur équipement favori et les autres équipements qu'ils utilisent. Ces informations sont ensuite sauvegardées
+dans un fichier JSON pour une utilisation ultérieure. Le script utilise aiohttp pour les requêtes asynchrones et BeautifulSoup
+pour analyser le contenu des pages.
+"""
+
 import aiohttp
 import asyncio
 from bs4 import BeautifulSoup

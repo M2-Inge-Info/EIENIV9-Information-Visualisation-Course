@@ -1,6 +1,9 @@
 function showArtistsUsingInstrument(category, instrument) {
+    console.log(category)
+    console.log(instrument)
     // Charger les données depuis le fichier JSON
     d3.json("final_data.json").then(dataJson => {
+        const data = dataJson
         const artists = dataJson.filter(item => item.equipments.favorite.product_type === category && item.equipments.favorite.product_name === instrument);
 
         // Afficher les artistes
@@ -29,7 +32,7 @@ function showArtistsUsingInstrument(category, instrument) {
                     .attr("class", "btn btn-primary")
                     .text("Voir plus")
                     .on("click", function() {
-                        displayArtistDetails(artistData.artist_node);
+                        displayArtistDetails(artistData.artist_node, data);
                     });
             });
         } else {
@@ -40,41 +43,48 @@ function showArtistsUsingInstrument(category, instrument) {
     });
 }
 
-async function displayArtistDetails(artistNode) {
-    const data = await d3.json("final_data.json");
+async function displayArtistDetails(artistNode, data) {
+    // const data = await fetchData();
     const artist = data.find(a => a.artist_node === artistNode);
+    const artistDetailsDiv = document.getElementById('artistDetails');
+
+    if (!artistDetailsDiv) {
+        console.error("L'élément avec l'ID 'artistDetails' n'existe pas dans le DOM.");
+        return;
+    }
 
     if (artist) {
-        const artistInfoDiv = d3.select('#artistInfo');
-        const favoriteEquipmentDiv = d3.select('#favoriteEquipment');
-        const otherEquipmentDiv = d3.select('#otherEquipment');
-
-        // Affichage des informations de l'artiste
-        artistInfoDiv.html(`<h2>${artist.artist}</h2><p>${artist.informations?.gender || 'Aucune information disponible'}</p>`);
-
-        // Affichage de l'équipement favori
-        favoriteEquipmentDiv.html(`<h3>Équipement Favori</h3><div class="row"><div class="col-md-3"><div class="card" style="width: 250px; height: 200px;"><div class="card-body"><p>${artist.equipments.favorite.product_name}</p></div><img src="${artist.equipments.favorite.product_img}" alt="${artist.equipments.favorite.product_name}" class="card-img-bottom"></div></div></div>`);
-
-        // Affichage des autres équipements
-        otherEquipmentDiv.html('<h3>Autres Équipements</h3><div class="row" id="otherEquipmentGrid"></div>');
-        const otherEquipmentGrid = d3.select('#otherEquipmentGrid');
-        artist.equipments.others.forEach(equipment => {
-            const card = otherEquipmentGrid.append('div')
-                .attr('class', 'col-md-3')
-                .append('div')
-                .attr('class', 'card')
-                .style('width', '250px')
-                .style('height', '250px');
-            
-            card.append('div')
-                .attr('class', 'card-body')
-                .append('p')
-                .text(equipment.product_name);
-
-            card.append('img')
-                .attr('src', equipment.product_img)
-                .attr('alt', equipment.product_name)
-                .attr('class', 'card-img-bottom');
+        // Informations de l'artiste
+        let artistInfoHtml = '<h2 class="mb-4">Informations sur l\'artiste</h2>';
+        artistInfoHtml += '<div class="card mb-4"><div class="card-body">';
+        Object.entries(artist.informations).forEach(([key, value]) => {
+            artistInfoHtml += `<p class="mb-2"><strong class="text-capitalize">${key.replace('_', ' ')}:</strong> ${value}</p>`;
         });
+        artistInfoHtml += '</div></div>';
+        artistDetailsDiv.innerHTML = artistInfoHtml;
+
+        // Équipement favori
+        artistDetailsDiv.innerHTML += `<div class="mb-4"><h3>Équipement Favori</h3><p>${artist.equipments.favorite.product_name}</p><img src="${artist.equipments.favorite.product_img}" alt="${artist.equipments.favorite.product_name}" class="img-fluid rounded"></div>`;
+
+        // Autres équipements
+        const otherEquipmentHtml = artist.equipments.others.map(equipment => {
+            return `<div class="col-md-3 card mt-2 mb-4">
+                        <div class="card-body">
+                            <p class="card-text">${equipment.product_name}</p>
+                            <img src="${equipment.product_img}" alt="${equipment.product_name}" class="img-fluid rounded">
+                        </div>
+                    </div>`;
+        }).join('');
+
+        artistDetailsDiv.innerHTML += `<div class="mb-4"><h3 class="mb-3">Autres Équipements</h3><div class="row">${otherEquipmentHtml}</div></div>`;
+
+        // Set the search input to the artist's name and trigger the input event
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.value = artist.artist;
+            searchInput.dispatchEvent(new Event('input'));
+        }
+    } else {
+        artistDetailsDiv.innerHTML = '<p>Artiste non trouvé</p>';
     }
 }

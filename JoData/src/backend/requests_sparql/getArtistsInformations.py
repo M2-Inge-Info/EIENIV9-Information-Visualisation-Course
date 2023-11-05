@@ -1,3 +1,11 @@
+"""
+Nom du fichier : getArtistsInformations.py
+Auteur : Jonathan
+Licence : Walter White
+Description :   Ce script charge des données d'artistes depuis un fichier JSON, filtre ces données, puis utilise une requête SPARQL pour récupérer des informations supplémentaires sur chaque artiste.
+                Les données enrichies sont ensuite sauvegardées dans un nouveau fichier JSON.
+"""
+
 import json
 from SPARQLWrapper import SPARQLWrapper, JSON
 
@@ -11,7 +19,6 @@ filtered_data = [item for item in data if item['product_name'] is not None and i
 # Configurez SPARQLWrapper
 sparql = SPARQLWrapper("http://wasabi.inria.fr/sparql")
 sparql.setReturnFormat(JSON)
-
 
 # Parcourez les données et exécutez la requête pour chaque artiste
 for item in filtered_data:

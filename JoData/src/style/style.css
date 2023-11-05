@@ -58,3 +58,16 @@ body {
     padding: 10px;
     margin: 10px;
   }
+
+  #radial-bar-container {
+    width: 95%;
+    height: auto;
+}
+
+#donut-chart svg {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}

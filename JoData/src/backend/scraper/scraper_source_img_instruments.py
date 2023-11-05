@@ -1,3 +1,13 @@
+"""
+Nom du fichier : scraper_source_img_instruments.py
+Auteur : Jonathan
+Licence : Walter White
+Description : Ce script utilise Selenium et BeautifulSoup pour effectuer du scraping web et récupérer les images d'instruments 
+musicaux à partir d'une liste d'instruments. Les images récupérées sont associées à leur nom d'instrument respectif 
+et sauvegardées dans un fichier JSON. Le script utilise également ThreadPoolExecutor pour effectuer des recherches 
+en parallèle et améliorer l'efficacité du scraping.
+"""
+
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import json
@@ -5,6 +15,15 @@ import time
 import concurrent.futures
 
 def fetch_image(instrument):
+    """
+    Récupère l'image de l'instrument spécifié à partir de la page de recherche.
+
+    Args:
+        instrument (str): Le nom de l'instrument à rechercher.
+
+    Returns:
+        tuple: Un tuple contenant le nom de l'instrument et l'URL de l'image, ou None en cas d'échec.
+    """
     try:
         # Construire l'URL de recherche
         search_url = base_url + instrument.replace(" ", "%20")

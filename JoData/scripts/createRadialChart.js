@@ -7,16 +7,25 @@
       };
     });
   
-    const width = 1200;
-    const height = 928;
-    const innerRadius = 180;
-    const outerRadius = Math.min(width, height) / 2 - 100;
-  
+    const containerWidth = document.getElementById('radial-bar-container').offsetWidth;
+    const width = containerWidth;
+    const height = width * 0.774;  // Ajustez le ratio selon vos besoins
+
+    // Ajustez les rayons en fonction de la largeur du conteneur
+    const outerRadius = Math.min(width, height) / 2 - 5;  // Ajustez la marge si nécessaire
+    const innerRadius = outerRadius * 0.5;  // Maintient la proportion entre les rayons
+
     const svg = d3.select("#radial-bar-container").append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .append("g")
-      .attr("transform", `translate(${width / 3},${height / 2})`);
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .append("g")
+        .attr("transform", `translate(${width / 2},${height / 2})`);
+
+  
+    // const svg = d3.select("#radial-bar-container").append("svg")
+    //   .attr("width", width)
+    //   .attr("height", height)
+    //   .append("g")
+    //   .attr("transform", `translate(${width / 3},${height / 2})`);
   
     const legendSvg = d3.select("#legend-container").append("svg")
       .attr("width", "100%")
@@ -88,6 +97,8 @@
 
 
       
+
+
   // Fonction pour mettre à jour le graphique
   function updateChart(threshold) {
     const filteredData = processedData.filter(d => d.total >= threshold);
@@ -109,10 +120,21 @@
             while (pieChartContainer.firstChild) {
                 pieChartContainer.removeChild(pieChartContainer.firstChild);
             }
+
+            // Ajoutez un écouteur pour détecter les changements sur l'élément input
+            document.getElementById("percentageFilter").addEventListener("input", function(event) {
+              const percentage = event.target.value;
+              document.getElementById("percentageValue").textContent = `${percentage}%`;
+              // Mettez à jour la Pie Chart en fonction de la valeur du pourcentage
+              const categoryData = getCategoryData(data, currentCategory); // Remplacez currentCategory par la catégorie actuelle
+              createPieChart(categoryData, d.category, percentage);
+            });
     
             // Créez et ajoutez la nouvelle pie chart
-            const pieChart = createPieChart(categoryData, d.category);
+            const pieChart = createPieChart(categoryData, d.category, 20);
             pieChartContainer.appendChild(pieChart);
+
+     
         });
 
     paths.exit().remove();

@@ -1,3 +1,13 @@
+"""
+Nom du fichier : scraper_favorite_equipement.py
+Auteur : Jonathan
+Licence : Walter White
+Description : Ce script effectue du scraping web asynchrone pour extraire des informations sur l'équipement utilisé par des artistes musicaux.
+Il utilise la bibliothèque aiohttp pour les requêtes HTTP asynchrones et BeautifulSoup pour le parsing HTML. Les informations
+récupérées incluent le nom de l'artiste, le nom et le type de produit, une image du produit, et des liens d'achat.
+Les données extraites sont ensuite sauvegardées dans un fichier JSON.
+"""
+
 import aiohttp
 import asyncio
 from bs4 import BeautifulSoup
