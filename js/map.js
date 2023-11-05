@@ -239,7 +239,7 @@ function applyFilters() {
 
     // Afficher le nombre de résultats dans le HTML
     filteredArtists.then(function(result) {
-        document.getElementById("results-count").innerHTML = result.length + " artistes trouvés";
+        document.getElementById("results-count").innerHTML = result.length + " artistes correspondants aux filtres";
     });
 
 
