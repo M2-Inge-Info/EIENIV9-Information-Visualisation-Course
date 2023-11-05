@@ -1,53 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stacked Bar Chart</title>
-
-    <link rel="stylesheet" href="cssQuentin\style.css">
+    <link rel="stylesheet" href="cssQuentin/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.js" integrity="sha512-NmSTfudjn1FCaFMQ+f4xveBmwRJn5ep8Wu+YOeq+CeExhFtKvwhfKVXFX3tGxoGWxu8Fl83qm9nE8/Hkc1dWZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-
 </head>
-
 <body>
+    <header>
+        <h1 id="main-title"><u>Analyse de la date de sortie des Albums</u></h1>
+        <p id="subtitle">Visualisation par Diagramme horizontal à barres empilées par Quentin Scordo</p>
+    </header>
 
-    <form id="sort-form">
-        Trier par:
-        <select id="sortOrder" onchange="updateChart()">
-            <option value="alpha">Alphabétique (A-Z)</option>
-            <option value="asc">Nombre d'albums croissant</option> 
-            <option value="desc">Nombre d'albums décroissant</option> 
-        </select>
-    </form>
+    
 
-    <form id="filter-form">
-        Afficher :
-        <select id="numRows" onchange="updateChart()">
-            <option value="5">5 premiers</option>
-            <option value="10">10 premiers</option>
-            <option value="20">25 premiers</option>
-            <option value="50">50 premiers</option>
-            <option value="all" selected>Tous</option>
-        </select>
-    </form>
+    <div class="right-column">
+        <div class="control-panel">
+            <form id="sort-form" class="control-form">
+                <u>Trier par:</u>
+                <select id="sortOrder" onchange="updateChart()">
+                    <option value="alpha">Alphabétique (A-Z)</option>
+                    <option value="asc">Nombre d'albums croissant</option>
+                    <option value="desc">Nombre d'albums décroissant</option>
+                </select>
+            </form>
 
-    <form id="color-filter-form">
-        Filtrer par intervalle d'années:
-        <div id="color-checkboxes">
-            <!-- les checkboxes seront ajoutés dynamiquement -->
+            <form id="filter-form" class="control-form">
+                <u>Afficher :</u>
+                <select id="numRows" onchange="updateChart()">
+                    <option value="5">5 premiers</option>
+                    <option value="10">10 premiers</option>
+                    <option value="20">25 premiers</option>
+                    <option value="50">50 premiers</option>
+                    <option value="all" selected>Tous</option>
+                </select>
+            </form>
+
+            <form id="color-filter-form" class="control-form">
+                <u>Filtrer par intervalle d'années:</u>
+                <div id="color-checkboxes">
+                    <!-- Les checkboxes seront ajoutés dynamiquement -->
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 
-    <div id="legend-container"></div>
-    
-    
 
-    
     <script src="jsQuentin/main.js"></script>
     <script src="jsQuentin/infobox.js"></script>
+    <div id="legend-container"></div>
 </body>
 
 </html>
