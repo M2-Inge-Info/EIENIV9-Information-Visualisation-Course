@@ -152,6 +152,7 @@ border: black solid 1px;
 .search-label {
   display: block;
   font-weight: bold;
+  margin-top: 50px;
 }
 
 #artist-search {

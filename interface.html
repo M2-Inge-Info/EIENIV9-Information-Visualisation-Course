@@ -38,15 +38,6 @@
         <div id="filters">
             <h2>Filtres</h2>
 
-            <div id="search-artist-container">
-                <label for="artist-search" class="search-label">Rechercher un artiste parmi les filtres pour trouver sa ville de naissance</label>
-                <input type="text" id="artist-search" list="artist-suggestions" placeholder="Saisir un artiste (Prénom Nom)">
-                <button id="search-button">Rechercher</button>
-                <datalist id="artist-suggestions"></datalist>
-                <div id="artist-search-results"></div>
-            </div>
-
-
             <div id="filters-content" class="filter-columns">
 
                 <div class="filter-column">
@@ -77,6 +68,18 @@
                     </div>
                 </div>
             </div>
+
+
+
+            <div id="search-artist-container">
+                <label for="artist-search" class="search-label">Rechercher un artiste parmi les filtres sélectionnés pour trouver sa ville de naissance</label>
+                <input type="text" id="artist-search" list="artist-suggestions" placeholder="Saisir un artiste (Prénom Nom)">
+                <button id="search-button">Rechercher</button>
+                <datalist id="artist-suggestions"></datalist>
+                <div id="artist-search-results"></div>
+            </div>
+
+            
 
             <div id="results-count"></div>
         </div>
