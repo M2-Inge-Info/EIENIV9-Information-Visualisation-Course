@@ -83,10 +83,11 @@ let infoBox = d3.select("body")
         if (htmlContent) {
           infoBox.html(htmlContent);
         } else {
+          /* DEBUG
         console.log("Genre: ", genre);
         console.log("Année: ", year);
         console.log("Nombre d'albums: ", albumCount);
-    
+          */
         let x = event.pageX;
         let y = event.pageY;
     
@@ -122,6 +123,17 @@ let infoBox = d3.select("body")
 
 
 
+
+
+/* Fonction pour afficher la fenêtre contextuelle lors du clic (non fonctionnel)
+
+
+
+
+
+
+
+// Créez une fenêtre contextuelle pour afficher les albums (non fonctionnel)
     let clickPopup = d3.select("body")
     .append("div")
     .attr("class", "click-popup")
@@ -149,13 +161,6 @@ let infoBox = d3.select("body")
 
 
 
-  
-    function hideClickPopup() {
-      d3.select('.click-popup')
-        .style('visibility', 'hidden');
-    }
-
-    
 
     function showClickPopup(event, genre) {
       let x = event.pageX + 20; // Ajoutez une valeur pour déplacer à droite
@@ -177,7 +182,7 @@ let infoBox = d3.select("body")
           .on("click", function() {
             hideClickPopup();
             d3.selectAll(".bar").style("stroke", null).style("stroke-width", null);
-            d3.select('.albums-popup').style("visibility", "hidden");  // Cacher la fenêtre contextuelle des albums
+            d3.select('.albums-popup').style("visibility", "hidden"); 
         });
   
       // Affichez la liste des albums pour le genre sélectionné
@@ -190,13 +195,24 @@ let infoBox = d3.select("body")
           .style("visibility", "visible");
   }
 
+  
+  // Fonction pour cacher la fenêtre contextuelle
+  function hideClickPopup() {
+    d3.select('.click-popup')
+      .style('visibility', 'hidden');
+  }
+
+
+
+
+*/
 
 
 
 
   
 
-
+// Fonction principal qui permet de mettre à jour le graphique en fonction des paramètres sélectionnés 
   function updateChart() {
     svg.selectAll("*").remove();
   
@@ -236,7 +252,7 @@ let infoBox = d3.select("body")
       }
     });
   
-    // Pour avoir les `n` premiers éléments en haut, nous filtrons après le tri
+    // Pour avoir les `n` premiers éléments en haut, on filtre après le tri
     let displayData = stackedData.slice(0, numRows);
   
     y.domain(displayData.map(d => d.Genre).reverse());
@@ -255,6 +271,8 @@ let infoBox = d3.select("body")
       .attr("class", "y axis")
       .call(d3.axisLeft(y));
   
+
+      
     // Groupe pour les barres
     const barGroups = svg.selectAll(".bar-group")
       .data(displayData)
@@ -262,12 +280,15 @@ let infoBox = d3.select("body")
       .attr("class", "bar-group")
       .attr("transform", d => `translate(0, ${y(d.Genre)})`);
 
+
+
+/* Fonction pour gérer le clic sur les barres (non fonctionnel)
     barGroups.on("click", function(event, d) {
       const genre = d.Genre;
       showAlbumTitles(genre);
-      showClickPopup(event); // Ajoutez ceci pour montrer la popup lors du clic
+      showClickPopup(event); 
   });
-
+*/
   checkedYears.forEach(year => {
     barGroups.append("rect")
       .attr("class", "bar-" + year.replace(/[><]/g, ""))  
@@ -292,7 +313,7 @@ function showAlbumTitles(genre) {
   // Filtrer les albums par genre
   const filteredAlbums = albumData.filter(album => album.Genre === genre);
 
-  // Vérifier si la fenêtre contextuelle existe déjà, sinon créez-la
+  // Vérification de l'existence de la fenêtre contextuelle sinon création d'une nouvelle 
   let albumsContainer = d3.select('.albums-popup');
   if (albumsContainer.empty()) {
     albumsContainer = d3.select("body").append("div")
@@ -304,23 +325,23 @@ function showAlbumTitles(genre) {
       .style("visibility", "hidden");
   }
 
-  // Effacer le contenu précédent
+  // Supression du contenu précédent
   albumsContainer.html('');
 
-  // Ajouter un titre pour la liste
+  // Ajout d'un titre pour la liste
   albumsContainer.append('h3').text(`Albums de genre : ${genre}`);
 
-  // Créer une liste des titres d'albums
+  // Création d'une liste des titres d'albums
   const albumsList = albumsContainer.append('ul');
   filteredAlbums.forEach(album => {
     albumsList.append('li').text(album.Title);
   });
 
-  // Montrer la fenêtre contextuelle
+  // Affichage de cette fenêtre
   albumsContainer.style("visibility", "visible");
 }
 
-
+// Création de la légende 
 function drawLegend() {
   const legendRectSize = 15;
   const legendSpacing = 20;

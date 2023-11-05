@@ -1,4 +1,3 @@
-/* Reset some default styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,25 +10,25 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Header and titles */
+
 header {
     text-align: center;
     padding: 50px;
-    background-color: #e7f0fa; /* Light blue background */
+    background-color: #e7f0fa; 
 }
 
 #main-title {
     margin-bottom: 10px;
     font-size: 2.5em;
-    color: #003366; /* Dark blue color */
+    color: #003366; 
 }
 
 #subtitle {
     font-size: 1.2em;
-    color: #007acc; /* Medium blue color */
+    color: #007acc; 
 }
 
-/* Control panel and forms */
+
 .control-panel,
 .controls {
     position: absolute;
@@ -40,30 +39,30 @@ header {
 
 .control-panel {
     position: fixed;
-    top: 50%; /* Start at 50% from the top of the viewport */
-    transform: translateY(-50%); /* Center it vertically */
+    top: 50%; 
+    transform: translateY(-50%); 
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Align child elements (forms) to the right */
+    align-items: flex-end; 
 }
 
 .control-form {
-    background-color: #e6f2ff; /* Light blue background */
+    background-color: #e6f2ff;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border: 2px solid #003366; /* Dark blue border */
+    border: 2px solid #003366; 
 }
 
 .control-form select {
     padding: 5px;
     border-radius: 4px;
     border: 1px solid #ddd;
-    width: 100%; /* Make select elements fill the form */
+    width: 100%; 
 }
 
-/* Add transitions for interactive elements */
+
 .control-form select, .infobox {
     transition: all 0.3s ease;
 }
@@ -72,22 +71,20 @@ header {
     box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
 }
 
-/* Chart container */
+
 #chart-container {
     margin: 20px;
-    /* Add more styles as needed */
 }
 
-/* Styling for bars and axes */
 .bar {
-    fill: #007acc; /* Medium blue */
+    fill: #007acc;
     fill-opacity: 0.7;
     transition: fill-opacity 0.3s;
 }
 
 .bar:hover {
     fill-opacity: 1;
-    fill: #005b99; /* Darker shade for hover */
+    fill: #005b99; 
 }
 
 .axis {
@@ -95,7 +92,6 @@ header {
     color: #333;
 }
 
-/* Legend styles */
 .legend {
     font-size: 12px;
     color: #666;
@@ -106,14 +102,14 @@ header {
     position: absolute;
     top: 20px;
     left: 200px;
-    background-color: #e6f2ff; /* Light blue background */
-    border: 2px solid #003366; /* Dark blue border */
+    background-color: #e6f2ff; 
+    border: 2px solid #003366; 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-top: 200px; /* Adjust as needed */
+    margin-top: 200px; 
 }
 
-/* Styling for infobox */
+
 .infobox {
     background: #fff;
     border: 1px solid #e1e1e1;
@@ -124,7 +120,6 @@ header {
     word-wrap: break-word;
 }
 
-/* Customize scrollbar for webkit browsers */
 ::-webkit-scrollbar {
     width: 8px;
 }
