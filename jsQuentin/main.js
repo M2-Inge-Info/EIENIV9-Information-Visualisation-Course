@@ -1,4 +1,4 @@
-const margin = { top: 100, right: 30, bottom: 40, left: 200 },
+const margin = { top: 160, right: 30, bottom: 40, left: 200 },
       width = 1200 - margin.left - margin.right,
       height = 5000 - margin.top - margin.bottom;
 
@@ -36,6 +36,16 @@ d3.csv("src/data/quentin_population_album.csv").then(function (data) {
   drawLegend();
   updateChart();
 });
+
+
+
+let albumData = [];
+
+d3.csv("src/data/quentin_data_artistsUnique.csv").then(function (data) {
+  albumData = data;
+});
+
+
 
 
 function createColorCheckboxes() {
@@ -129,7 +139,7 @@ let infoBox = d3.select("body")
     .style("cursor", "pointer")
     .style("font-size", "16px") // Assurez-vous que la taille de la police est assez grande
     .style("font-weight", "bold") // Rendre la croix plus visible
-    .text("X")
+    .text("x")
     .on("click", function() {
         hideClickPopup();
         d3.selectAll(".bar").style("stroke", null).style("stroke-width", null);
@@ -139,122 +149,175 @@ let infoBox = d3.select("body")
 
 
 
+  
+    function hideClickPopup() {
+      d3.select('.click-popup')
+        .style('visibility', 'hidden');
+    }
 
-    function showClickPopup(event) {
+    
+
+    function showClickPopup(event, genre) {
       let x = event.pageX + 20; // Ajoutez une valeur pour déplacer à droite
       let y = event.pageY;
   
-      // Afficher la fenêtre contextuelle
+      // Effacez le contenu précédent de la fenêtre contextuelle
+      clickPopup.html("");
+  
+      // Ajoutez le bouton de fermeture
+      clickPopup.append("span")
+          .attr("class", "close-btn")
+          .style("position", "absolute")
+          .style("top", "0")
+          .style("right", "5px")
+          .style("cursor", "pointer")
+          .style("font-size", "16px")
+          .style("font-weight", "bold")
+          .text("x")
+          .on("click", function() {
+            hideClickPopup();
+            d3.selectAll(".bar").style("stroke", null).style("stroke-width", null);
+            d3.select('.albums-popup').style("visibility", "hidden");  // Cacher la fenêtre contextuelle des albums
+        });
+  
+      // Affichez la liste des albums pour le genre sélectionné
+      showAlbumTitles(genre);
+  
+      // Affichez la fenêtre contextuelle
       clickPopup
           .style("left", x + "px")
           .style("top", y + "px")
-          .style("visibility", "visible")
-          .text("TODO");
-  }
-  function hideClickPopup() {
-    clickPopup.style("visibility", "hidden");
-    d3.selectAll(".bar").style("stroke", null).style("stroke-width", null); // Enlève la bordure de toutes les barres
-}
-
-
-
-
-
-
-function updateChart() {
-  svg.selectAll("*").remove();
-
-  let sortOrder = d3.select("#sortOrder").node().value;
-  let numRows = d3.select("#numRows").node().value;
-
-  if (numRows === "all") {
-    numRows = stackedData.length;
-  } else {
-    numRows = parseInt(numRows);
+          .style("visibility", "visible");
   }
 
-  // Tri selon l'ordre choisi
-  switch (sortOrder) {
-    case "alpha":
-      stackedData.sort((a, b) => d3.ascending(a.Genre, b.Genre));
-      break;
-    case "desc": 
-      stackedData.sort((a, b) => d3.descending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
-      break;
-    case "asc": 
-      stackedData.sort((a, b) => d3.ascending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
-      break;
-  }
 
-  let checkedYears = [];
-  colors.domain().forEach(year => {
-    if (d3.select("#checkbox-" + year.replace(/[><]/g, "")).property("checked")) {
-      checkedYears.push(year);
+
+
+
+  
+
+
+  function updateChart() {
+    svg.selectAll("*").remove();
+  
+    let sortOrder = d3.select("#sortOrder").node().value;
+    let numRows = d3.select("#numRows").node().value;
+  
+    if (numRows === "all") {
+      numRows = stackedData.length;
+    } else {
+      numRows = parseInt(numRows);
     }
+  
+    // Calculer la nouvelle hauteur basée sur le nombre de lignes
+    const rowHeight = 30; // hauteur ajustable pour chaque ligne
+    const newHeight = numRows * rowHeight;
+  
+    // Mise à jour de la plage de l'échelle en fonction de la nouvelle hauteur
+    y.range([newHeight, 0]);
+  
+    // Tri selon l'ordre choisi
+    switch (sortOrder) {
+      case "alpha":
+        stackedData.sort((a, b) => d3.ascending(a.Genre, b.Genre));
+        break;
+      case "desc": 
+        stackedData.sort((a, b) => d3.descending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
+        break;
+      case "asc": 
+        stackedData.sort((a, b) => d3.ascending(d3.sum(Object.values(a)), d3.sum(Object.values(b))));
+        break;
+    }
+  
+    let checkedYears = [];
+    colors.domain().forEach(year => {
+      if (d3.select("#checkbox-" + year.replace(/[><]/g, "")).property("checked")) {
+        checkedYears.push(year);
+      }
+    });
+  
+    // Pour avoir les `n` premiers éléments en haut, nous filtrons après le tri
+    let displayData = stackedData.slice(0, numRows);
+  
+    y.domain(displayData.map(d => d.Genre).reverse());
+    x.domain([0, d3.max(displayData, d => d3.sum(checkedYears, key => d[key] || 0))]);
+  
+    // Mise à jour de la hauteur du SVG en fonction du nombre de lignes
+    d3.select("svg")
+      .attr("height", newHeight + margin.top + margin.bottom);
+  
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0,0)")
+      .call(d3.axisTop(x));
+  
+    svg.append("g")
+      .attr("class", "y axis")
+      .call(d3.axisLeft(y));
+  
+    // Groupe pour les barres
+    const barGroups = svg.selectAll(".bar-group")
+      .data(displayData)
+      .enter().append("g")
+      .attr("class", "bar-group")
+      .attr("transform", d => `translate(0, ${y(d.Genre)})`);
+
+    barGroups.on("click", function(event, d) {
+      const genre = d.Genre;
+      showAlbumTitles(genre);
+      showClickPopup(event); // Ajoutez ceci pour montrer la popup lors du clic
   });
 
-  // Pour avoir les `n` premiers éléments en haut, nous filtrons après le tri
-  let displayData = stackedData.slice(0, numRows);
-
-  y.domain(displayData.map(d => d.Genre).reverse());
-  x.domain([0, d3.max(displayData, d => d3.sum(checkedYears, key => d[key] || 0))]);
-
-  svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0,0)")
-    .call(d3.axisTop(x));
-
-  svg.append("g")
-    .attr("class", "y axis")
-    .call(d3.axisLeft(y));
-
-    checkedYears.forEach(year => {
-      svg.selectAll(".bar-" + year.replace(/[><]/g, ""))
-        .data(displayData)
-        .enter()
-        .append("rect")
-        .attr("class", "bar-" + year.replace(/[><]/g, ""))  
-      .attr("y", d => y(d.Genre))
+  checkedYears.forEach(year => {
+    barGroups.append("rect")
+      .attr("class", "bar-" + year.replace(/[><]/g, ""))  
       .attr("x", d => x(d3.sum(checkedYears.slice(0, checkedYears.indexOf(year)), key => d[key] || 0)))
       .attr("width", d => x(d[year] || 0) - x(0))
       .attr("height", y.bandwidth())
       .attr("fill", colors(year))
-      .on("mouseover", (event, d) => {
-        d3.select(this).style("stroke", "black").style("stroke-width", "2px");
-        const genre = d.Genre;
-        const albumCount = d[year] || 0;
-        showInfoBox(event, genre, year, albumCount);
-      })
       .on("mouseover", function(event, d) {
-        d3.select(this).style("stroke", "black").style("stroke-width", "2px");
+        d3.select(event.currentTarget).style("stroke", "black").style("stroke-width", "2px");
         const genre = d.Genre;
         const albumCount = d[year] || 0;
         showInfoBox(event, genre, year, albumCount);
-      })
-      .on("mouseout", function() {
-        d3.select(this).style("stroke", null).style("stroke-width", null);
+    })
+    .on("mouseout", function(event) {
+        d3.select(event.currentTarget).style("stroke", null).style("stroke-width", null);
         hideInfoBox();
-      })
-      .on("click", function(event, d) {
-        if (clickPopup.style("visibility") === "hidden") {
-          d3.selectAll(".bar").style("stroke", null).style("stroke-width", null); // Enlève la bordure de toutes les barres
-          d3.select(this).style("stroke", "red").style("stroke-width", "2px"); // Ajoute une bordure rouge à la barre cliquée
-          showClickPopup(event);
-        } else {
-          hideClickPopup();
-        }
-      });
+    });
+  });
+}
+
+function showAlbumTitles(genre) {
+  // Filtrer les albums par genre
+  const filteredAlbums = albumData.filter(album => album.Genre === genre);
+
+  // Vérifier si la fenêtre contextuelle existe déjà, sinon créez-la
+  let albumsContainer = d3.select('.albums-popup');
+  if (albumsContainer.empty()) {
+    albumsContainer = d3.select("body").append("div")
+      .attr("class", "albums-popup")
+      .style("position", "absolute")
+      .style("padding", "10px")
+      .style("background", "white")
+      .style("border", "1px solid black")
+      .style("visibility", "hidden");
+  }
+
+  // Effacer le contenu précédent
+  albumsContainer.html('');
+
+  // Ajouter un titre pour la liste
+  albumsContainer.append('h3').text(`Albums de genre : ${genre}`);
+
+  // Créer une liste des titres d'albums
+  const albumsList = albumsContainer.append('ul');
+  filteredAlbums.forEach(album => {
+    albumsList.append('li').text(album.Title);
   });
 
-
-svg.append("g")
-.attr("class", "x axis")
-.attr("transform", "translate(0,0)")
-.call(d3.axisTop(x));
-
-svg.append("g")
-.attr("class", "y axis")
-.call(d3.axisLeft(y));
+  // Montrer la fenêtre contextuelle
+  albumsContainer.style("visibility", "visible");
 }
 
 
