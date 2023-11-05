@@ -1,3 +1,6 @@
+$('#container2').hide();
+$('#container3').hide();
+
 $('#nav-container1').click(function() {
     $('#container1').show();
     $('#container2').hide();

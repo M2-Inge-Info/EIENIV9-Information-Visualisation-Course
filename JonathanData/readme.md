@@ -1,3 +1,5 @@
+# Partie DI MARTINO Jonathan
+
 # Les étapes du backend 
 
 Step 1 : Requête SPARQL - getArtistsEquipmentPage.py
@@ -26,10 +28,7 @@ Pour fusionner les données j'ai d'abord fusionner les informations des équipem
 Ensuite j'ai fusionner tous les équipements avec les informations de leurs artistes défini. (final_updated_data_no_duplicates.json)
 
 Step 6 : Traitement des données pour la visualisation
-    - 
-
 Step 7 : Création de la visualiation en frontend
-    -
 
 
 -- Report 

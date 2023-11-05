@@ -69,3 +69,9 @@ Notre projet vise spécifiquement les agents d'artistes musicaux. Ce sont des pr
 - Comparaison
 - Suivi des Médias Sociaux
 - Prise de Décision Éclairée
+
+## Lancer la démo
+
+Pour lancer la démo, il faut obligatoirement utiliser LiveServer de VSCode.
+
+Il ne faut pas lancer directement le fichier demo.html, sinon aucune donnée ne sera présente.
