@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<div id="container"></div>
+
+<div> Page Rank</div>
+
+<label class="switch">
+  <input type="checkbox" id="toggleSwitch">
+  <span class="slider round"></span>
+</label>
+  
+
+<div id="infoBox"></div>
+
+<div>
+  <label for="nodeSearch">Rechercher un nœud :</label>
+  <input type="text" id="nodeSearch">
+  <button id="searchButton">Rechercher</button>
+</div>
+
+
+<div>
+  <label for="distanceSlider">Distance (k):</label>
+  <input type="range" id="distanceSlider" min="1" max="10" value="1">
+  <span id="distanceValue">1</span>
+</div>
+
+
+<div id="legend">
+  <h3>Legend</h3>
+  <div id="genre-list">
+      <!-- Les boutons de genre seront ajoutés ici par JavaScript -->
+  </div>
+</div>
+
+
+<script type="module" src="visu.js">
+
+</script>

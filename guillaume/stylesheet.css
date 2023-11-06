@@ -1,0 +1,95 @@
+/* Style du switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Style du slider rond */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/* Style du slider lorsque le switch est activé */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Cache l'input */
+#toggleSwitch {
+  display: none;
+}
+
+/* Style du switch activé */
+#toggleSwitch:checked + .slider {
+  background-color: #2196F3;
+}
+
+#toggleSwitch:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+/* #infoBox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+} */
+
+#infoBox {
+  position: absolute;
+  width: 10%;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background-color: white;
+  overflow-y: auto; /* Ajoutez une barre de défilement vertical si nécessaire */
+}
+
+
+/* CSS pour styliser les boutons de genre */
+#genre-list button {
+  padding: 8px 12px;
+  margin: 4px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#genre-list button.active {
+  background-color: #3182bd; /* Couleur associée dans D3 */
+  color: white;
+}
